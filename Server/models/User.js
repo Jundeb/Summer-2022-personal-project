@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//muokkaa tätä devin jälkeen
 const transactionSchema = new Schema({
     from: String,
     to: String,
     amount: Number,
     date: Date,
-    transaction_name: String
+    transaction_name: String,
 });
 
 const bank_accountSchema = new Schema({
@@ -23,6 +24,7 @@ const bank_accountSchema = new Schema({
         default: 0
     },
     transactions: [transactionSchema]
+        
         
     
 });

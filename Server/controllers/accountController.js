@@ -1,7 +1,23 @@
 const User = require('../models/User');
 const crypto = require('crypto');
 
-const createNewAccount = async (req, res) => {
+const getAllAccountTransactions = async (req, res) => {
+
+    const account_ID = req.body.ID;
+    const account_num = req.body.account_num;
+
+    if(!account_num || !account_num) return res.status(400).json({'message': 'Account ID and num required'});
+
+    const foundUser = await User.findOne({"_id": account_ID}).exec();
+
+    if(!foundUser) return res.status(204).json({'message': 'No User found.'});
+
+    if(foundUser.bank_accounts[account_num] === undefined)return res.status(204).json({'message': 'No bank_account found'});
+
+    res.status(200).send(foundUser.bank_accounts[account_num].transactions);
+}
+
+const createNewCreditAccount = async (req, res) => {
 
     const username = req.body.username;
 
@@ -28,4 +44,7 @@ const createNewAccount = async (req, res) => {
 }
 
 
-module.exports = {createNewAccount};
+module.exports = {
+    createNewCreditAccount,
+    getAllAccountTransactions
+};

@@ -48,11 +48,13 @@ app.use('/refresh', require('./routes/refreshRouter'));
 app.use('/logout', require('./routes/logoutRouter'));
 
 //for testing routes
-app.use('/info', require('./routes/api/personalInfoRouter'));
+
 
 //every route you want to verify needs to be under this
 app.use(verifyJWT);
 app.use('/user', require('./routes/api/userRouter'));
+app.use('/info', require('./routes/api/personalInfoRouter'));
+app.use('/transaction', require('./routes/api/transactionRouter'));
 app.use('/account', require('./routes/api/accountRouter'));
 
 
