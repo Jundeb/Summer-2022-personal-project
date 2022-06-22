@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3500; 
 
 //Connect to MongoDB
 connectDB();
@@ -46,9 +46,6 @@ app.use('/register', require('./routes/registerRouter'));
 app.use('/auth', require('./routes/authRouter'));
 app.use('/refresh', require('./routes/refreshRouter'));
 app.use('/logout', require('./routes/logoutRouter'));
-
-//for testing routes
-
 
 //every route you want to verify needs to be under this
 app.use(verifyJWT);

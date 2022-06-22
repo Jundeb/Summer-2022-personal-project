@@ -31,6 +31,7 @@ const transferHandler = async (req, res) => {
         foundUser1.bank_accounts[account1_account_num].balance = balance1 - amount;
         foundUser2.bank_accounts[account2_account_num].balance = balance2 + amount;
 
+        //creating transactions for bankaccounts
         foundUser1.bank_accounts[account1_account_num].transactions.push({
             'from': foundUser1.bank_accounts[account1_account_num].account_number,
             'to': foundUser2.bank_accounts[account2_account_num].account_number,

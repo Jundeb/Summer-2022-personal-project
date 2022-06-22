@@ -5,15 +5,19 @@ const crypto = require('crypto');
 const handleNewUser = async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
+
     if(!username || !password) return res.status(400).json({'message': 'Username and password required.'});
+
     //check for dublicate usernames in the db
     const dublicate = await User.findOne({ username: username}).exec();
+
     if(dublicate) return res.status(409).send('Username already exists'); //Conflict
 
     try{
         //encrypting the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        //creating random string for account_number
         const randomString = crypto.randomBytes(6).toString('hex');
 
         //create and store the new user
@@ -21,6 +25,7 @@ const handleNewUser = async (req, res) => {
             'username': username,
             'password': hashedPassword,
 
+            //adding 1000 balance for every new user
             'bank_accounts': {
                 'account_number': "FI"+randomString,
                 'balance': 1000,
