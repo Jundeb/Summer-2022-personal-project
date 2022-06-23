@@ -12,7 +12,7 @@ const handleLogin = async (req, res) => {
 
     const match = await bcrypt.compare(password, foundUser.password);
     if(match) {
-        const roles = Object.values(foundUser.roles);
+        const roles = Object.values(foundUser.roles).filter(Boolean);
         //if match creating jwts
         const accessToken = jwt.sign(
                 { 
@@ -29,15 +29,14 @@ const handleLogin = async (req, res) => {
                 process.env.REFRESH_TOKEN_SECRET,
                 { expiresIn: '1d' } //change after dev
             );
+
         foundUser.refreshToken = refreshToken;
         const result = await foundUser.save();
         const usersID = foundUser._id;
         const personal_info = foundUser.personal_info;
-        const bank_accounts = foundUser.bank_accounts;
-
 
         res.cookie('userCookie', refreshToken, { httpOnly: true, sameSite: 'None', maxAge: 24 * 60 * 60  * 1000}); //set secure: true after dev
-        res.json({ accessToken, usersID, personal_info, bank_accounts});
+        res.json({ usersID, personal_info, roles, accessToken });
     } else res.sendStatus(401);
 }
 

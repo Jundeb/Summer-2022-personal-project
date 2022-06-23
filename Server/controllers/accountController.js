@@ -24,6 +24,7 @@ const createNewCreditAccount = async (req, res) => {
     if(!username)return res.status(400).json({'message': 'Username required.'});
 
     const foundUser = await User.findOne({username: username}).exec();
+    
     if(!foundUser) return res.status(204).json({'message': 'No content found for username.'});
 
     if(foundUser.bank_accounts.length >= 2)return res.status(403).json({'message': 'Credit account already exists'});
