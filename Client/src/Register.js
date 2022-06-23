@@ -1,7 +1,8 @@
 import "./Register.css";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faInfoCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom"
 import axios from "./api/axios";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{4,23}$/;
@@ -81,10 +82,10 @@ const Register = () => {
   }
 
   return (
-      <>
+      <div>
       {success
         ? (
-          <section>
+          <section className="success">
             <h1>Success!</h1>
             <p>
               <a href="#">Sign In</a>
@@ -92,9 +93,9 @@ const Register = () => {
           </section>
         )
         : (
-          <section>
+          <section className="registerSection">
             <h1>Register</h1>
-            <p className="errorMessage">
+            <p className="error">
               {errorMessage}
             </p>
             <form onSubmit={handleSubmit}>
@@ -112,6 +113,7 @@ const Register = () => {
               </label>
               <br />
               <input
+                className="registerInput"
                 type="text"
                 id="username"
                 autoComplete="off"
@@ -144,6 +146,7 @@ const Register = () => {
                 </span>
               </label>
               <input
+                className="registerInput"
                 type="password"
                 id="password"
                 onChange={(event) => setPassword(event.target.value)}
@@ -177,6 +180,7 @@ const Register = () => {
               </label>
               <br />
               <input
+                className="registerInput"
                 type="password"
                 id="confirmPassword"
                 onChange={(event) => setMatchPassword(event.target.value)}
@@ -192,19 +196,19 @@ const Register = () => {
                   : null
                 }
               </p>
-              <button type="submit" disabled={!validName || !validPassword || !validMatch ? true : false}>
+              <button  disabled={!validName || !validPassword || !validMatch ? true : false}>
                 Sign Up
               </button>
             </form>
             <p className="alreadyRegistered">
-              Already registered
+              Already registered?
               <br/>
-              <a href="#">Sign In</a>
+              <Link to="/login">Sign In</Link>
             </p>
           </section>
         )
       }
-      </>
+      </div>
     )
   }
 

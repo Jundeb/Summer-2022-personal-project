@@ -1,0 +1,19 @@
+.loginSection{
+    width: 400px;
+    height: auto;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+    background-color: rgb(71, 91, 119);
+    border-radius: 2%;
+    }
+
+.loginInput{
+    margin: 5px;
+    margin-bottom: 15px;
+}
+
+.error{
+    color: rgb(255, 4, 4);
+    font-size: medium;
+  }
