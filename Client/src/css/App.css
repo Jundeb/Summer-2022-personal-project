@@ -11,3 +11,7 @@
   background-color: rgb(142, 187, 214);
   margin: 100px;
   }
+
+  h1, h4,label,p,a, span{
+    color:white;
+    }

@@ -1,0 +1,13 @@
+.notFound{
+    width: 400px;
+    height: auto;
+    padding: 30px;
+    text-align: center;
+    background-color: rgb(71, 91, 119);
+    border-radius: 2%;
+    margin: auto; 
+}
+
+.notFound h1{
+    margin-bottom: 10px;
+}

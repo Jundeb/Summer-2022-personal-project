@@ -6,7 +6,11 @@
     text-align: center;
     background-color: rgb(71, 91, 119);
     border-radius: 2%;
-    }
+}
+
+.loginSection h1, .loginSection button{
+    margin-bottom: 10px;
+}
 
 .loginInput{
     margin: 5px;
@@ -16,4 +20,15 @@
 .error{
     color: rgb(255, 4, 4);
     font-size: medium;
+  }
+
+  .successLogin{
+    display: block;
+    width: 400px;
+    height: auto;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+    background-color: rgb(71, 91, 119);
+    border-radius: 2%;
   }

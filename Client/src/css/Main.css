@@ -1,0 +1,58 @@
+.accountsSection{
+    width: 400px;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(71, 91, 119);
+    border-radius: 2%;
+    margin: auto;
+    }
+
+.accountsSection h1, .infoSection h4{
+    margin-bottom: 10px;
+}
+
+.infoSection{
+     width: 350px;
+     height: auto;
+     padding: 20px;
+     text-align: left;
+     background-color: rgb(45, 156, 147);
+     border-radius: 2%;
+     margin: auto;  
+     
+}
+
+.infoSection h5{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.creditSection{
+    width: 350px;
+     height: auto;
+     padding: 20px;
+     text-align: left;
+     background-color: rgb(56, 132, 225);
+     border-radius: 2%;
+     margin: auto;  
+     text-align: center;
+}
+
+.accountsButton{
+    margin-bottom: 10px;
+    width: 300px;
+}
+
+.createCreditButton{
+    width: 300px;
+}
+
+.updateInfoButton{
+    margin-left: 75px;
+}
+
+
+
+    

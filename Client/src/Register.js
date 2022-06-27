@@ -1,4 +1,4 @@
-import "./Register.css";
+import "./css/Register.css";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faInfoCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -82,13 +82,13 @@ const Register = () => {
   }
 
   return (
-      <div>
+      <>
       {success
         ? (
-          <section className="success">
+          <section className="successRegister">
             <h1>Success!</h1>
             <p>
-              <a href="#">Sign In</a>
+            <Link to="/login">Sign In</Link>
             </p>
           </section>
         )
@@ -208,7 +208,7 @@ const Register = () => {
           </section>
         )
       }
-      </div>
+      </>
     )
   }
 

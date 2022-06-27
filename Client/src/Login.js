@@ -1,4 +1,4 @@
-import "./Login.css"
+import "./css/Login.css"
 import { useState, useEffect, useContext} from "react"
 import { Link } from "react-router-dom"
 import axios from "./api/axios"
@@ -58,11 +58,11 @@ const Login = () => {
     return(
         <>
         {success
-        ? (<section>
+        ? (<section className="successLogin">
             <h1>You are logged in!</h1>
             <br/>
             <p>
-            <Link to="/main">Main</Link>
+            <Link to="/main">Go To Home</Link>
             </p>
         </section>)
         :
@@ -72,7 +72,7 @@ const Login = () => {
                 {errorMessage}
             </p>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="username">Username</label>
                 <br/>
                 <input
                 className="loginInput"
@@ -84,7 +84,7 @@ const Login = () => {
                 required
                 />
                 <br/>
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password">Password</label>
                 <br/>
                 <input
                 className="loginInput"

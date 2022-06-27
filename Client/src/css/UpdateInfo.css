@@ -1,0 +1,56 @@
+.updatePersonalInfo {
+  display: block;
+  width: 400px;
+  height: auto;
+  margin: auto;
+  padding: 30px;
+  text-align: center;
+  background-color: rgb(71, 91, 119);
+  border-radius: 2%;
+}
+
+.updatePersonalInfo h1 {
+  margin-bottom: 10px;
+}
+
+.updatePersonalInfo input {
+  margin-bottom: 7px;
+}
+
+.updatePersonalInfo button {
+  margin-top: 5px;
+}
+
+.successUpdateinfo {
+  display: block;
+  width: 400px;
+  height: auto;
+  margin: auto;
+  padding: 30px;
+  text-align: center;
+  background-color: rgb(71, 91, 119);
+  border-radius: 2%;
+}
+
+.successUpdateinfo h4 {
+  margin-bottom: 4px;
+}
+
+.returnIcon {
+  font-size: large;
+  margin-right: 350px;
+}
+
+.returnIcon:hover {
+  display: block;
+  padding-top: 4px;
+  color: rgb(71, 91, 119);
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.error {
+  margin-bottom: 10px;
+}
