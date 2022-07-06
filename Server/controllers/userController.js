@@ -36,20 +36,21 @@ const getOneUser = async (req, res) => {
     if(user.bank_accounts.length === 1){
         res.json({personalInfo, account1});
     }
+    else{
+        const accountId2 = user.bank_accounts[1]._id;
+        const accountNumber2 = user.bank_accounts[1].account_number;
+        const balance2 = user.bank_accounts[1].balance;
+        const limit2 = user.bank_accounts[1].limit;
 
-    const accountId2 = user.bank_accounts[1]._id;
-    const accountNumber2 = user.bank_accounts[1].account_number;
-    const balance2 = user.bank_accounts[1].balance;
-    const limit2 = user.bank_accounts[1].limit;
+        const account2 ={ 
+            "accountId": accountId2,
+            "accountNumber": accountNumber2,
+            "balance": balance2,
+            "limit": limit2
+            };
 
-    const account2 ={ 
-        "accountId": accountId2,
-        "accountNumber": accountNumber2,
-        "balance": balance2,
-        "limit": limit2
-    };
-
-    res.json({personalInfo, account1, account2});
+        res.json({personalInfo, account1, account2});
+    }
 }
 
 const changePassword = async (req, res) => {
@@ -71,7 +72,7 @@ const changePassword = async (req, res) => {
 
         console.log(result); //del after dev
        
-        res.status(200).send({'success': `Password changed succesfully.`});
+        res.status(200).json({'success': `Password changed succesfully.`});
     } catch(err) {
         res.status(500).json({'message': err.message});
     }

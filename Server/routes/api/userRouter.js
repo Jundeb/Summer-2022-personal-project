@@ -9,6 +9,6 @@ router.route('/')
     .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.User), userController.changePassword);
 
 router.route('/:id')
-    .get(verifyRoles(ROLES_LIST.Admin) ,userController.getOneUser);
+    .get(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.User) ,userController.getOneUser);
 
 module.exports = router;

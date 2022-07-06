@@ -50,14 +50,13 @@ app.use('/logout', require('./routes/logoutRouter'));
 //every route you want to verify needs to be under this
 app.use(verifyJWT);
 app.use('/user', require('./routes/api/userRouter'));
-app.use('/info', require('./routes/api/personalInfoRouter'));
 app.use('/transaction', require('./routes/api/transactionRouter'));
 app.use('/account', require('./routes/api/accountRouter'));
+app.use('/info', require('./routes/api/personalInfoRouter'));
 
 
 app.all('*', (req, res) => {
     res.sendStatus(404);
-    res.send('Page not found');
 });
 
 //handling errors and login them

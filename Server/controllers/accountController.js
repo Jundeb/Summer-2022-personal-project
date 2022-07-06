@@ -3,18 +3,23 @@ const crypto = require('crypto');
 
 const getAllAccountTransactions = async (req, res) => {
 
-    const account_ID = req.body.ID;
-    const account_num = req.body.account_num;
+    const userId = req.body.userId;
+    const account_num = req.body.accountNumber;
 
-    if(!account_num || !account_num) return res.status(400).json({'message': 'Account ID and num required'});
-
-    const foundUser = await User.findOne({"_id": account_ID}).exec();
+    if(!userId || !account_num) return res.status(400).json({'message': 'Account ID and num required'});
+    
+    const foundUser = await User.findOne({"_id": userId}).exec();
 
     if(!foundUser) return res.status(204).json({'message': 'No User found.'});
 
-    if(foundUser.bank_accounts[account_num] === undefined)return res.status(204).json({'message': 'No bank_account found'});
+    if(foundUser.bank_accounts[account_num] === undefined) return res.status(204).json({'message': 'No bank_account found'});
 
-    res.status(200).send(foundUser.bank_accounts[account_num].transactions);
+    const accountNumber = foundUser.bank_accounts[account_num].account_number;
+    const balance = foundUser.bank_accounts[account_num].balance;
+    const limit = foundUser.bank_accounts[account_num].limit;
+    const transactions = foundUser.bank_accounts[account_num].transactions;
+
+    res.status(200).json({accountNumber, balance, limit, transactions});
 }
 
 const createNewCreditAccount = async (req, res) => {
@@ -40,7 +45,7 @@ const createNewCreditAccount = async (req, res) => {
 
     const result = await foundUser.save();
 
-    res.status(200).json({'success': `New credit account ${foundUser.bank_accounts[1]} created.`});
+    return res.status(200).json({'success': `New credit account ${foundUser.bank_accounts[1]} created.`});
 
 }
 

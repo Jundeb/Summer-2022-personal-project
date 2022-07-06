@@ -20,7 +20,7 @@ const handleLogout = async (req, res) => {
     const result = await foundUser.save();
     console.log(result); //delete after dev
     res.clearCookie('userCookie', {httpOnly: true, sameSite: 'None'}); //after dev set secure: true -only serves https
-    res.sendStatus(204);
+    return res.sendStatus(204);
 }
 
 module.exports = { handleLogout }

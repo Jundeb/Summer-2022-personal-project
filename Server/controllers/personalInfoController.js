@@ -17,7 +17,7 @@ const updateInfo = async (req, res) => {
 
     const result = await foundUser.save();
 
-    res.status(200).json({'success': 'Personal info updated.'});
+    return res.status(200).json({'success': 'Personal info updated.'});
 }
 
 module.exports = {

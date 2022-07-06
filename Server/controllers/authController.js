@@ -36,8 +36,8 @@ const handleLogin = async (req, res) => {
         const personal_info = foundUser.personal_info;
 
         res.cookie('userCookie', refreshToken, { httpOnly: true, sameSite: 'None', maxAge: 24 * 60 * 60  * 1000}); //set secure: true after dev
-        res.json({ usersID, accessToken });
-    } else res.sendStatus(401);
+        return res.json({ usersID, accessToken });
+    } else return res.sendStatus(401);
 }
 
 module.exports = { handleLogin }
