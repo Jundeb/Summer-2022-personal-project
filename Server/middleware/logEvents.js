@@ -4,12 +4,12 @@ const { format } = require('date-fns');
 const { v4: uuid } = require('uuid');
 
 const logEvents = async (message) => {
-    const dateTime = `${format(new Date(), 'dd/MM/yyyy\tHH:mm:ss')}`;
+    const d = new Date();
     const logItem = `${uuid()}\t${message}\n`;
 
     try{
         const result = await Events.create({
-            'date': new Date(),
+            'date': d.toLocaleString(),
             'logItem': logItem
         });
 

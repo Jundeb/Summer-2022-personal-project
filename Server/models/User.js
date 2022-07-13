@@ -6,7 +6,7 @@ const transactionSchema = new Schema({
     from: String,
     to: String,
     amount: Number,
-    date: Date,
+    date: String,
     transaction_name: String,
 });
 
