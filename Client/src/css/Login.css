@@ -2,20 +2,44 @@
     width: 400px;
     height: auto;
     margin: auto;
-    padding: 30px;
+    padding: 20px;
     text-align: center;
     background-color: rgb(71, 91, 119);
     border-radius: 2%;
 }
 
-.loginSection h1, .loginSection button{
+.loginSection h1{
     margin-bottom: 10px;
 }
 
-.loginInput{
-    margin: 5px;
-    margin-bottom: 15px;
+.loginSection form{
+    margin: 10px;
 }
+
+.loginInput{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.loginButton{
+    color: white;
+    background-color: rgb(57, 131, 160);
+    border-radius: 40px;
+    margin-top: 5px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    width: 50%;
+    height: 30px;
+  }
+
+.loginButton:enabled:hover {
+    background-color: rgb(81, 140, 163);
+  }
+
+ .needAnAccount{
+    margin-top: 10px;
+  }
 
 .error{
     color: rgb(255, 4, 4);
@@ -23,11 +47,10 @@
   }
 
   .successLogin{
-    display: block;
     width: 400px;
     height: auto;
     margin: auto;
-    padding: 30px;
+    padding: 20px;
     text-align: center;
     background-color: rgb(71, 91, 119);
     border-radius: 2%;

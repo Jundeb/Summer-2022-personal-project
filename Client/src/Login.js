@@ -1,5 +1,5 @@
 import "./css/Login.css"
-import { useState, useEffect, useContext} from "react"
+import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import axios from "./api/axios"
 import UserContext from "./context/userProvider"
@@ -21,28 +21,29 @@ const Login = () => {
 
         try {
             const response = await axios.post(LOGIN_URL,
-                JSON.stringify({username, password}),
+                JSON.stringify({ username, password }),
                 {
-                    headers: {'Content-Type': 'application/json'},
+                    headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
                 });
-            
+                
             const accessToken = response?.data?.accessToken;
             const userId = response?.data?.usersID;
 
-            setUser({userId, accessToken});
+
+            setUser({ userId, username, accessToken });
+            
             setUsername('');
             setPassword('');
             setSuccess(true);
         } catch (err) {
-            if(!err?.response){
+            if (!err?.response) {
                 setErrorMessage('No Server Response');
             }
-            else if(err.response?.status === 400)
-            {
+            else if (err.response?.status === 400) {
                 setErrorMessage('Missing Username or Password');
             }
-            else if(err.response?.status === 401){
+            else if (err.response?.status === 401) {
                 setErrorMessage('Unauthorized');
             }
             else {
@@ -55,54 +56,56 @@ const Login = () => {
         setErrorMessage('');
     }, [username, password]);
 
-    return(
+    return (
         <>
-        {success
-        ? (<section className="successLogin">
-            <h1>You are logged in!</h1>
-            <br/>
-            <p>
-            <Link to="/main">Go To Home</Link>
-            </p>
-        </section>)
-        :
-        (<section className="loginSection">
-            <h1>Sign In</h1>
-            <p className="error">
-                {errorMessage}
-            </p>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <br/>
-                <input
-                className="loginInput"
-                type='text'
-                id='username'
-                autoComplete='off'
-                onChange={(e)=>setUsername(e.target.value)}
-                value={username}
-                required
-                />
-                <br/>
-                <label htmlFor="password">Password</label>
-                <br/>
-                <input
-                className="loginInput"
-                type="password"
-                id="password"
-                onChange ={(e) => setPassword(e.target.value)}
-                value={password}
-                required             
-                />
-                <button className="loginButton">Sign In</button>
-            </form>
-            <p>
-                Need an account? <br/>
-                <Link to="/register">Sign Up</Link>
-            </p>
-        </section>)
-        }
-      </>
+            {success
+                ? (<section className="successLogin">
+                    <h1>You are logged in!</h1>
+                    <br />
+                    <p>
+                        <Link to="/main">Go To Home</Link>
+                    </p>
+                </section>)
+                :
+                (<section className="loginSection">
+                    <h1>Sign In</h1>
+                    <span className="error">
+                        {errorMessage}
+                    </span>
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="username">Username</label>
+                        <br />
+                        <input
+                            className="loginInput"
+                            type='text'
+                            id='username'
+                            autoComplete='off'
+                            onChange={(e) => setUsername(e.target.value)}
+                            value={username}
+                            required
+                        />
+                        <br />
+                        <label htmlFor="password">Password</label>
+                        <br />
+                        <input
+                            className="loginInput"
+                            type="password"
+                            id="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            required
+                        />
+                        <button className="loginButton">Sign In</button>
+                    </form>
+                    <p className="needAnAccount">
+                        Need an account? 
+                        <br />
+                        <Link to="/register">Sign Up</Link>
+                    </p>
+                </section>
+                )
+            }
+        </>
     )
 
 }

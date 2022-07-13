@@ -1,61 +1,82 @@
-.registerSection{
-  display: block;
+.registerSection {
   width: 400px;
   height: auto;
   margin: auto;
-  padding: 30px;
+  padding: 20px;
   text-align: center;
   background-color: rgb(71, 91, 119);
   border-radius: 2%;
-  }
+}
 
-  .registerSection h1, .registerSection label, .registerSection p, .registerSection a{
-    margin: 15px;
-  }
+.registerSection h1 {
+  margin-bottom: 10px;
+}
 
-    button{
-      color: white;
-      background-color: rgb(57, 131, 160);
-      border-radius: 40px;
-      text-align: center;
-      cursor: pointer;
-      border: none;
-      letter-spacing: 00.2px;
-      width: 50%;
-      height: 30px;
-    }
+.registerSection form {
+  margin: 10px
+}
 
-    button:enabled:hover{
-      background-color: rgb(81, 140, 163);
-    }
+.registerInput {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
 
-   button:disabled{
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+#confirmPasswordNote{
+  margin-bottom: 15px;
+}
 
-    .registerInput{
-      margin: 5px;
-    }
+.infoCircle{
+  margin-right: 3px;
+}
 
-    .error{
-      color: rgb(255, 4, 4);
-      font-size: medium;
-    }
+.valid {
+  margin-left: 5px;
+}
 
-    .successRegister{
-      display: block;
-      width: 400px;
-      height: auto;
-      margin: auto;
-      padding: 30px;
-      text-align: center;
-      background-color: rgb(71, 91, 119);
-      border-radius: 2%;
-    }
+.invalid {
+  margin-left: 5px;
+}
 
-  .successRegister h1{
-        margin-bottom: 10px;
-    }
+.alreadyRegistered {
+  margin-top: 10px;
+}
 
-   
+.registerButton {
+  color: white;
+  background-color: rgb(57, 131, 160);
+  border-radius: 40px;
+  margin-top: 5px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  width: 50%;
+  height: 30px;
+}
+
+.registerButton:enabled:hover {
+  background-color: rgb(81, 140, 163);
+}
+
+.registerButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  color: rgb(255, 4, 4);
+  font-size: medium;
+}
+
+.successRegister {
+  width: 400px;
+  height: auto;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(71, 91, 119);
+  border-radius: 2%;
+}
+
+.successRegister h1 {
+  margin-bottom: 10px;
+}

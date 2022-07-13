@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { Redirect, Route } from 'react-router-dom';
 import axios from "./api/axios";
 import UserContext from "./context/userProvider";
 
@@ -63,13 +62,15 @@ const UpdateInfo = () => {
                     <Link to="/main">Go To Home</Link>
                 </section>
                 : <section className="updatePersonalInfo">
-                    <Link to ="/main" className="returnIcon">
-                        <FontAwesomeIcon icon={faArrowLeft} />
-                    </Link>
+                    <div className="returnIconDiv">
+                        <Link to="/main">
+                            <FontAwesomeIcon icon={faArrowLeft} />
+                        </Link>
+                    </div>
                     <h1>Update Personal Info</h1>
-                    <p className="error">
+                    <span className="error">
                         {errorMessage}
-                    </p>
+                    </span>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="firstname">
                             Firstname
@@ -120,7 +121,7 @@ const UpdateInfo = () => {
                         />
                         <br />
                         <button className="updateInfoButton" type="submit">
-                            Update Info!
+                            Update Info
                         </button>
                     </form>
                 </section>

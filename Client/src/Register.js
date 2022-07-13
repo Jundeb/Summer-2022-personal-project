@@ -49,30 +49,29 @@ const Register = () => {
     //if button enabled with JS hack
     const valid1 = USER_REGEX.test(user);
     const valid2 = PWD_REGEX.test(password);
-    if(!valid1 || !valid2)
-    {
+    if (!valid1 || !valid2) {
       setErrorMessage("Invalid Entry");
       return;
     }
 
     try {
       const response = await axios.post(REGISTER_URL,
-        JSON.stringify({username: user, password}),
+        JSON.stringify({ username: user, password }),
         {
-          headers: {'Content-type': 'application/json'},
+          headers: { 'Content-type': 'application/json' },
           withCredentials: true
         }
-        );
+      );
 
-        console.log(response.data);
-        console.log(response.accessToken);
-        console.log(JSON.stringify(response));
-        setSuccess(true);
-        
+      console.log(response.data);
+      console.log(response.accessToken);
+      console.log(JSON.stringify(response));
+      setSuccess(true);
+
     } catch (err) {
-      if(!err?.response){
+      if (!err?.response) {
         setErrorMessage('No Server Response');
-      } else if(err.response?.status === 409) {
+      } else if (err.response?.status === 409) {
         setErrorMessage('Username Taken');
       }
       else {
@@ -82,34 +81,34 @@ const Register = () => {
   }
 
   return (
-      <>
+    <>
       {success
         ? (
           <section className="successRegister">
             <h1>Success!</h1>
             <p>
-            <Link to="/login">Sign In</Link>
+              <Link to="/login">Sign In</Link>
             </p>
-          </section>
-        )
-        : (
-          <section className="registerSection">
+          </section> )
+        : 
+          (<section className="registerSection">
             <h1>Register</h1>
-            <p className="error">
+            <span className="error">
               {errorMessage}
-            </p>
+            </span>
             <form onSubmit={handleSubmit}>
               <label htmlFor="username">
-                Username:
-                <span className="valid">
-                  {validName && <FontAwesomeIcon icon={faCheck} />}
-                </span>
-                <span className="invalid">
-                  {validName || !user
-                    ? null
-                    : <FontAwesomeIcon icon={faXmark} />
-                  }
-                </span>
+                Username
+                {validName &&
+                  <span className="valid">
+                    <FontAwesomeIcon icon={faCheck} />
+                  </span>
+                }
+                {(!validName && user) &&
+                  <span className="invalid">
+                    <FontAwesomeIcon icon={faXmark} />
+                  </span>
+                }
               </label>
               <br />
               <input
@@ -122,29 +121,29 @@ const Register = () => {
                 onFocus={() => setUserFocus(true)}
                 onBlur={() => setUserFocus(false)}
               />
-              <p id="uidnote" className="instructions">
-                {(userFocus && !validName)
-                  ? <span> <FontAwesomeIcon icon={faInfoCircle} />
-                    4 to 23 characters.<br />
-                    Must begin with a letter <br />
-                    Letters, numbers, underscores, hyphens allowed.
-                  </span>
-                  : null
-                }
-              </p>
+              {(userFocus && !validName) &&
+                <p id="uidnote" className="instructions">
+                  <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
+                  4 to 23 characters.<br />
+                  Must begin with a letter <br />
+                  Letters, numbers, underscores, hyphens allowed.
+                </p>
+              }
+              <br />
               <label htmlFor="password">
-                Password:
-                <span className="valid">
-                  {validPassword && <FontAwesomeIcon icon={faCheck} />}
-                </span>
-                <span className="invalid">
-                  {validPassword || !password
-                    ? null
-                    : <FontAwesomeIcon icon={faXmark} />
-                  }
-                  <br />
-                </span>
+                Password
+                {validPassword &&
+                  <span className="valid">
+                    <FontAwesomeIcon icon={faCheck} />
+                  </span>
+                }
+                {(!validPassword && password) &&
+                  <span className="invalid">
+                    <FontAwesomeIcon icon={faXmark} />
+                  </span>
+                }
               </label>
+              <br />
               <input
                 className="registerInput"
                 type="password"
@@ -154,29 +153,27 @@ const Register = () => {
                 onFocus={() => setPasswordFocus(true)}
                 onBlur={() => setPasswordFocus(false)}
               />
-              <p id="passwordNote" className="instructions">
-                {passwordFocus && !validPassword
-                  ? <span> <FontAwesomeIcon icon={faInfoCircle} />
-                    5 to 24 characters. <br />
-                    Must include uppercase and lowercase letters, a number and a special character. <br />
-                    Allowed special characters: !@?$ </span>
-                  : null
-                }
-              </p>
+              {(passwordFocus && !validPassword) &&
+                <p id="passwordNote" className="instructions">
+                 <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
+                  5 to 24 characters. <br />
+                  Must include uppercase and lowercase letters, a number and a special character. <br />
+                  Allowed special characters: !@?$
+                </p>
+              }
+              <br />
               <label htmlFor="confirmPassword">
-                Confirm password:
-                <span className="valid">
-                  {validMatch && matchPassword
-                    ? <FontAwesomeIcon icon={faCheck} />
-                    : null
-                  }
-                </span>
-                <span className="invalid">
-                  {validMatch || !matchPassword
-                    ? null
-                    : <FontAwesomeIcon icon={faXmark} />
-                  }
-                </span>
+                Confirm password
+                {(validMatch && matchPassword) &&
+                  <span className="valid">
+                    <FontAwesomeIcon icon={faCheck} />
+                  </span>
+                }
+                {(!validMatch && matchPassword) &&
+                  <span className="invalid">
+                    <FontAwesomeIcon icon={faXmark} />
+                  </span>
+                }
               </label>
               <br />
               <input
@@ -188,28 +185,26 @@ const Register = () => {
                 onFocus={() => setMatchFocus(true)}
                 onBlur={() => setMatchFocus(false)}
               />
-              <p id="confirmPasswordNote" className="instructions">
-                {matchFocus && !validMatch
-                  ? <span> <FontAwesomeIcon icon={faInfoCircle} />
-                    Must be same as password. <br />
-                  </span>
-                  : null
-                }
-              </p>
-              <button  disabled={!validName || !validPassword || !validMatch ? true : false}>
+              {(matchFocus && !validMatch) &&
+                <p id="confirmPasswordNote" className="instructions">
+                  <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
+                  Must be same as password.
+                </p>
+              }
+              <button className ="registerButton" disabled={!validName || !validPassword || !validMatch ? true : false}>
                 Sign Up
               </button>
             </form>
             <p className="alreadyRegistered">
               Already registered?
-              <br/>
+              <br />
               <Link to="/login">Sign In</Link>
             </p>
           </section>
         )
       }
-      </>
-    )
-  }
+    </>
+  )
+}
 
-      export default Register;
+export default Register;

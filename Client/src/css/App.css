@@ -1,17 +1,35 @@
 /* These apply for all pages */
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Verdana, Tahoma, sans-serif;
-  }
-  
-  body{
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Tahoma, sans-serif;
+}
+
+body {
   background-color: rgb(142, 187, 214);
   margin: 100px;
-  }
+}
 
-  h1, h4,label,p,a, span{
-    color:white;
-    }
+h1,h3,h4,h5,label,p,a,span {
+  color: white;
+}
+
+button {
+  color: white;
+  background-color: rgb(57, 131, 160);
+  border-radius: 40px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+}
+
+Button:enabled:hover {
+  background-color: rgb(81, 140, 163);
+}
+
+Button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

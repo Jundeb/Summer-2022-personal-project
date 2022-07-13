@@ -1,4 +1,32 @@
-.accountsSection{
+.infoDiv {
+    width: 350px;
+    height: auto;
+    padding: 20px;
+    text-align: left;
+    background-color: rgb(45, 156, 147);
+    border-radius: 2%;
+    margin: auto;
+}
+
+.infoDiv h4{
+    margin-bottom: 5px;
+}
+
+.infoUpdate{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.infoUpdate h5{
+    margin-bottom: 5px;
+}
+
+.updateInfoButton {
+    width: 150px;
+    height: 23px;
+}
+
+.accountsDiv {
     width: 400px;
     height: auto;
     padding: 20px;
@@ -6,53 +34,67 @@
     background-color: rgb(71, 91, 119);
     border-radius: 2%;
     margin: auto;
-    }
-
-.accountsSection h1, .infoSection h4{
-    margin-bottom: 10px;
 }
 
-.infoSection{
-     width: 350px;
-     height: auto;
-     padding: 20px;
-     text-align: left;
-     background-color: rgb(45, 156, 147);
-     border-radius: 2%;
-     margin: auto;  
-     
-}
-
-.infoSection h5{
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-
-.creditSection{
-    width: 350px;
-     height: auto;
-     padding: 20px;
-     text-align: left;
-     background-color: rgb(56, 132, 225);
-     border-radius: 2%;
-     margin: auto;  
-     text-align: center;
+.accountsDiv h3{
+    text-align: left;
+    
 }
 
 .accountsButton{
-    margin-bottom: 10px;
-    width: 300px;
+    width: 200px;
+    height: 27px;
+    word-spacing: 60px;
+    margin-top: 10px;
 }
 
-.createCreditButton{
-    width: 300px;
+.creditDiv {
+    width: 350px;
+    height: auto;
+    padding: 20px;
+    background-color: rgb(40, 66, 99);
+    border-radius: 2%;
+    margin: auto;
+    text-align: center;
 }
 
-.updateInfoButton{
-    margin-left: 75px;
+.creditDiv h4{
+    margin-bottom: 5px;
 }
 
+.createCreditButton {
+    width: 200px;
+    height: 25px;
+    margin-top: 5px;
+}
 
+.successCredit h3{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 
-    
+.makeTransaction{
+    display: inline-block;
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    padding-top: 10px;
+    background-color: rgb(247, 247, 247);
+    color: rgb(71, 91, 119);
+    border-radius: 50%;
+    font-size:x-large
+}
+
+.makeTransaction:hover{
+    background-color:rgb(71, 91, 119);
+    color: rgb(247, 247, 247);
+}
+
+.makeTransaction p {
+    margin-top: 12px;
+    text-align: center;
+    font-size: small;
+    width: auto;
+    height: auto;
+}
+

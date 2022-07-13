@@ -1,0 +1,49 @@
+.mainBox{ 
+    text-align: center;
+    margin: auto;
+}
+
+.topBar{
+    background-color: rgb(142, 187, 214);
+    position: relative;
+    width: 1020px;
+    height: auto;
+    margin: auto;
+    text-align: center;
+}
+
+.account{
+    height: auto;
+    width: 400px;
+    align-items: center;
+    margin: auto;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgb(247, 247, 247);
+}
+
+.accountBox{
+    margin: 5px;
+    color: rgb(71, 91, 119);
+}
+
+#accountBalance{
+    font-size: larger;
+}
+.ag-theme-material{
+    --ag-foreground-color: white;
+    --ag-background-color: rgb(71, 91, 119);
+    --ag-header-background-color: rgb(247, 247, 247);
+    --ag-row-hover-color: rgb(195, 195, 195);
+    display: inline-block;
+}
+
+.ag-header-cell-label {
+    justify-content: center;
+}
+
+.ag-header-cell span {
+    color: rgb(71, 91, 119);
+}
+
