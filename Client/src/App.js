@@ -5,7 +5,7 @@ import Main from './Main';
 import Accounts from './Accounts';
 import UpdateInfo from './UpdateInfo';
 import NotFound from './NotFound';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />} />
         <Route path='/main' element={<Main />} />
-        <Route path='/accounts/:accountNum' element={<Accounts accountNum = "0" />} />
+        <Route path='/accounts/:accountNum' element={<Accounts />} />
         <Route path="/updateinfo" element={<UpdateInfo />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

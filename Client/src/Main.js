@@ -1,7 +1,9 @@
 import "./css/Main.css"
+
+import NotFound from './NotFound';
 import Transfer from "./Transfer";
 import { useState, useEffect, useContext } from "react";
-import { Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import axios from "./api/axios";
 import UserContext from "./context/userProvider";
 import useRefreshToken from "./hooks/useRefreshToken";
@@ -21,9 +23,13 @@ const Main = () => {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const response = await axios.get(`/user/${user.userId}`,
+                const response = await axios.post(`/user`,
+                    JSON.stringify({ userId: user.userId }),
                     {
-                        headers: { 'Authorization': 'Bearer ' + user.accessToken },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + user.accessToken
+                        },
                         withCredentials: true
                     }
                 );
@@ -51,16 +57,15 @@ const Main = () => {
                         limit: response.data.account2.limit
                     });
                 }
-                setUpdate(false);
-
             } catch (err) {
                 console.error(err.data);
             }
         }
         getUser();
+        setUpdate(false);
     }, [update]);
 
-    
+
 
     const handleCreditCreate = async () => {
         try {
@@ -79,6 +84,9 @@ const Main = () => {
             setErrorMessage('');
 
         } catch (error) {
+
+            setCreditSuccess(false);
+
             console.log(error.response.data);
             if (!error?.response) {
                 setErrorMessage('No Server Response');
@@ -97,10 +105,11 @@ const Main = () => {
 
     return (
         <>
-            {user.userId &&
+            {user.userId
+                ?
                 <section>
                     <div className="infoDiv">
-                        <h4>Personal Info: </h4>
+                        <h4>Personal Info </h4>
                         {userInfo.firstname !== ''
                             ? <span>{userInfo.firstname + " " + userInfo.lastname}</span>
                             : " -"
@@ -124,21 +133,23 @@ const Main = () => {
                             </Link>
                         </div>
                     </div>
-                    <Transfer setUpdate={setUpdate} debit={debitAccount.accountNumber} credit={creditAccount.accountNumber} debitBalance={debitAccount.balance} creditBalance={creditAccount.balance} />
                     <div className="accountsDiv">
-                        <h3>Accounts:</h3>
-                        <Link to="/accounts/0">
-                            <button className="accountsButton">
-                                {"Debit " + debitAccount.balance + "€"}
-                            </button>
-                        </Link>
-                        <br />
-                        {creditAccount.accountNumber !== ''
-                            ? <Link to="/accounts/1">
-                                <button className="accountsButton">
-                                    {"Credit " + creditAccount.balance + "€"}
+                        <h3>Accounts</h3>
+                        <Transfer setUpdate={setUpdate} debit={debitAccount.accountNumber} credit={creditAccount.accountNumber} debitBalance={debitAccount.balance} creditBalance={creditAccount.balance} />                                                 
+                        <div className="accountsButtonDiv">
+                            <Link to="/accounts/0">
+                                <button>                  
+                                    {"Debit " + debitAccount.balance + "€"}
                                 </button>
                             </Link>
+                        </div>
+                        {creditAccount.accountNumber !== ''
+                            ? <div className="accountsButtonDiv">
+                                <Link to="/accounts/1">
+                                    <button>
+                                        {"Credit " + creditAccount.balance + "€"}
+                                    </button>
+                                </Link></div>
                             : null
                         }
                     </div>
@@ -168,6 +179,7 @@ const Main = () => {
                         : null
                     }
                 </section>
+                : <NotFound />
             }
         </>
     )

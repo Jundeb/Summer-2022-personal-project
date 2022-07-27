@@ -95,6 +95,7 @@ const Login = () => {
                             value={password}
                             required
                         />
+                        <br />
                         <button className="loginButton">Sign In</button>
                     </form>
                     <p className="needAnAccount">

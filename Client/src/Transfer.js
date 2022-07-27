@@ -11,6 +11,8 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
     const { user } = useContext(UserContext);
 
     const [open, setOpen] = useState(false);
+
+    //loading is for visual loading circle
     const [loading, setLoading] = useState(false);
 
     const [errorMessage, setErrorMessage] = useState('');
@@ -50,7 +52,7 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
                 });
 
             console.log(response.data);
-
+            
             setTimeout(() => {
                 setLoading(false);
             }, 1000);
@@ -79,11 +81,11 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
     }
 
     return (
-        <div>
-            <button onClick={handleOpen} className="makeTransaction">
+        <div className="makeTransaction">
+            <button onClick={handleOpen}>
                 <FontAwesomeIcon icon={faMoneyBillTransfer} />
-                <p>Transfer</p>
             </button>
+            <p>Transfer</p>
             <Dialog open={open}>
                 <DialogTitle sx={{pb: 0}}>Transfer</DialogTitle>
                 <div className="errorTransfer">
@@ -101,7 +103,7 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
                             width: 'fit-content',
                         }}
                     >
-                        <FormControl sx={{ minWidth: 350, mt: 0, pt: 0}}>
+                        <FormControl sx={{ width: 300, mt: 0, pt: 0}}>
                             <InputLabel htmlFor="account1">From</InputLabel>
                             <Select
                                 value={account1}
@@ -113,10 +115,10 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
                                 {credit && <MenuItem value={credit}>Credit: {credit} {creditBalance}€</MenuItem>}
                             </Select>
                         </FormControl>
-                        <FormControl sx={{ minWidth: 350, mt: 1 }}>
+                        <FormControl sx={{ mt: 1 }}>
                             <TextField type="search" label="To" onChange={(e) => setAccount2(e.target.value)} sx={{ mb: 1.2 }} required />
                         </FormControl>
-                        <FormControl sx={{ minWidth: 350, mt: 1 }}>
+                        <FormControl sx={{ mt: 1 }}>
                             <InputLabel htmlFor="amount">Amount</InputLabel>
                             <OutlinedInput
                                 value={amount}

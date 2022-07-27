@@ -49,7 +49,7 @@ const transferHandler = async (req, res) => {
             'from': account1_accountNumber,
             'to': account2_accountNumber,
             'amount': amount,
-            'date': d.toLocaleString(),
+            'date': d.toDateString(),
             'transaction_name': 'Send'
         });
 
@@ -57,7 +57,7 @@ const transferHandler = async (req, res) => {
             'from': account1_accountNumber,
             'to': account2_accountNumber,
             'amount': amount,
-            'date': d.toLocaleString(),
+            'date': d.toDateString(),
             'transaction_name': 'Receive'
         });
 

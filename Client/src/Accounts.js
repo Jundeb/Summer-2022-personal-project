@@ -65,11 +65,11 @@ const Accounts = () => {
                 </div>
                 <div className="ag-theme-material" style={{ height: 585, width: 1020, margin: 'auto' }}>
                     <AgGridReact rowData={transactions} >
-                        <AgGridColumn sortable={true} filter={true} field='date' headerName="Date" />
-                        <AgGridColumn filter={true} field='transaction_name' headerName="Transaction Name" />
-                        <AgGridColumn filter={true} field='amount' headerName="Amount" />
-                        <AgGridColumn filter={true} field='from' headerName="From" />
-                        <AgGridColumn filter={true} field='to' headerName="To" />
+                        <AgGridColumn sortable={true} field='date' headerName="Date" />
+                        <AgGridColumn field='transaction_name' headerName="Transaction Name" />
+                        <AgGridColumn field='amount' headerName="Amount" />
+                        <AgGridColumn field='from' headerName="From" />
+                        <AgGridColumn field='to' headerName="To" />
                     </AgGridReact>
                 </div>
             </div>

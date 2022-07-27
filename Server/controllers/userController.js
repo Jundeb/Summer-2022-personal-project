@@ -12,12 +12,12 @@ const getAllUsers = async (req, res) => {
 }
 
 const getOneUser = async (req, res) => {
-    if(!req?.params?.id) return res.status(400).json({ 'message': 'User id required.'});
+    if(!req?.body?.userId) return res.status(400).json({ 'message': 'User id required.'});
 
     //find user by ID
-    const user = await User.findOne({ _id: req.params.id}).exec();
+    const user = await User.findOne({ _id: req.body.userId}).exec();
 
-    if(!user) return res.status(204).json({ 'message': `No user matches ID: ${req.params.id}.`});
+    if(!user) return res.status(204).json({ 'message': `No user matches ID: ${req.body.userId}.`});
 
     const personalInfo = user.personal_info;
 
@@ -54,11 +54,11 @@ const getOneUser = async (req, res) => {
 }
 
 const changePassword = async (req, res) => {
-    if(!req?.body?.id) return res.status(400).json({ 'message': 'ID parameter is required.'});
+    if(!req?.body?.userId) return res.status(400).json({ 'message': 'ID parameter is required.'});
 
-    const user = await User.findOne({ _id: req.body.id}).exec();
+    const user = await User.findOne({ _id: req.body.userId}).exec();
    
-    if(!user) return res.status(204).json({ 'message': `No user matches ID : ${req.body.id}.`});
+    if(!user) return res.status(204).json({ 'message': `No user matches ID : ${req.body.userId}.`});
 
     const newPassword = req.body.password;
 

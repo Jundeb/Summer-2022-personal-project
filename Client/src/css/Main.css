@@ -1,24 +1,25 @@
 .infoDiv {
-    width: 350px;
+    width: 400px;
     height: auto;
     padding: 20px;
-    text-align: left;
-    background-color: rgb(45, 156, 147);
-    border-radius: 2%;
+    text-align: center;
+    background-color: rgb(95, 108, 124);
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
     margin: auto;
 }
 
 .infoDiv h4{
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .infoUpdate{
-    margin-top: 10px;
+    margin-top: 15px;
     text-align: center;
 }
 
 .infoUpdate h5{
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .updateInfoButton {
@@ -32,20 +33,49 @@
     padding: 20px;
     text-align: center;
     background-color: rgb(71, 91, 119);
-    border-radius: 2%;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
     margin: auto;
 }
 
 .accountsDiv h3{
-    text-align: left;
-    
+    margin-bottom: 10px;
 }
 
-.accountsButton{
+.accountsButtonDiv{
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.accountsButtonDiv button{
     width: 200px;
     height: 27px;
     word-spacing: 60px;
-    margin-top: 10px;
+}
+
+.makeTransaction{
+    margin: auto;
+    height: 50px;
+    width: 50px;
+}
+.makeTransaction button{
+    height: 40px;
+    width: 40px;
+    background-color: rgb(247, 247, 247);
+    color: rgb(71, 91, 119);
+    border-radius: 50%;
+    font-size: larger;
+}
+
+.makeTransaction button:hover{
+    background-color:rgb(71, 91, 119);
+    color: rgb(247, 247, 247);
+}
+
+.makeTransaction p {
+    text-align: center;
+    font-size: small;
 }
 
 .creditDiv {
@@ -72,29 +102,3 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
-.makeTransaction{
-    display: inline-block;
-    margin: auto;
-    height: 50px;
-    width: 50px;
-    padding-top: 10px;
-    background-color: rgb(247, 247, 247);
-    color: rgb(71, 91, 119);
-    border-radius: 50%;
-    font-size:x-large
-}
-
-.makeTransaction:hover{
-    background-color:rgb(71, 91, 119);
-    color: rgb(247, 247, 247);
-}
-
-.makeTransaction p {
-    margin-top: 12px;
-    text-align: center;
-    font-size: small;
-    width: auto;
-    height: auto;
-}
-

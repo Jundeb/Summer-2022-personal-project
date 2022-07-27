@@ -191,6 +191,7 @@ const Register = () => {
                   Must be same as password.
                 </p>
               }
+              <br/>
               <button className ="registerButton" disabled={!validName || !validPassword || !validMatch ? true : false}>
                 Sign Up
               </button>

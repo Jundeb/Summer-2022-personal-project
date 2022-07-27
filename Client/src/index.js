@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  //StrictMode is goot to use in development.. REMOVE AGTER DEV!!!
+  //StrictMode is good to use in development.. remove after dev
   //<React.StrictMode>
     <BrowserRouter>
       <UserProvider>

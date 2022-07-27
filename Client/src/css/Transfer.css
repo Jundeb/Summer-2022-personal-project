@@ -1,17 +1,14 @@
 .transferButton1{
-    display: inline-block;
-    float: left;
-    background-color: blue;
+    margin: auto;
+    background-color: rgb(57, 131, 160);
     width: 80px;
     height: 25px;
 
 }
 
 .transferButton2{
-    display: inline-block;
-    float: right;
-    
-    background-color: red;
+    margin: auto;
+    background-color: rgb(57, 131, 160);
     width: 150px;
     height: 25px;
 }
