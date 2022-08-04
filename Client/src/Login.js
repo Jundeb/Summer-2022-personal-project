@@ -30,7 +30,7 @@ const Login = () => {
             const accessToken = response?.data?.accessToken;
             const userId = response?.data?.usersID;
 
-
+            console.log(response.data);
             setUser({ userId, username, accessToken });
             
             setUsername('');

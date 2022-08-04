@@ -40,7 +40,6 @@ const UpdateInfo = () => {
             );
 
             console.log(response.data);
-            console.log(JSON.stringify(response));
             setSuccess(true);
 
         } catch (error) {

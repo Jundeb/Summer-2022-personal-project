@@ -1,12 +1,14 @@
 import "./css/Main.css"
 
 import NotFound from './NotFound';
+import LogOut from "./LogOut";
 import Transfer from "./Transfer";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom"
 import axios from "./api/axios";
 import UserContext from "./context/userProvider";
 import useRefreshToken from "./hooks/useRefreshToken";
+import { Timer } from "ag-grid-community";
 
 const Main = () => {
     const { user, setUser } = useContext(UserContext);
@@ -16,6 +18,7 @@ const Main = () => {
     const [userInfo, setUserInfo] = useState({ firstname: '', lastname: '', address: '', phonenumber: '' });
     const [debitAccount, setDebitAccount] = useState({ accountId: '', accountNumber: '', balance: '', limit: '' });
     const [creditAccount, setCreditAccount] = useState({ accountId: '', accountNumber: '', balance: '', limit: '' });
+    const [logOut, setLogOut] = useState(false);
 
     const [creditSuccess, setCreditSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -65,7 +68,9 @@ const Main = () => {
         setUpdate(false);
     }, [update]);
 
-
+    useEffect(() => {
+        refresh();
+    }, []);
 
     const handleCreditCreate = async () => {
         try {
@@ -103,83 +108,108 @@ const Main = () => {
         }
     }
 
+    const handleLogOut = async () => {
+
+        setUser({ accessToken: null });
+        setLogOut(true);
+        try {
+            const response = await axios.get('/logout', {
+                withCredentials: true
+            });
+
+            console.log(response.status);
+
+        } catch (error) {
+            console.log(error.response);
+        }
+    }
+
     return (
         <>
-            {user.userId
+            {logOut === false && user.accessToken !== null
                 ?
-                <section>
-                    <div className="infoDiv">
-                        <h4>Personal Info </h4>
-                        {userInfo.firstname !== ''
-                            ? <span>{userInfo.firstname + " " + userInfo.lastname}</span>
-                            : " -"
-                        }
-                        <br />
-                        {userInfo.address !== ''
-                            ? <span>{userInfo.address}</span>
-                            : " -"
-                        }
-                        <br />
-                        {userInfo.phonenumber !== ''
-                            ? <span>{userInfo.phonenumber}</span>
-                            : " -"
-                        }
-                        <div className="infoUpdate">
-                            <h5>Want to update info?</h5>
-                            <Link to="/updateInfo">
-                                <button className="updateInfoButton">
-                                    Update Info
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="accountsDiv">
-                        <h3>Accounts</h3>
-                        <Transfer setUpdate={setUpdate} debit={debitAccount.accountNumber} credit={creditAccount.accountNumber} debitBalance={debitAccount.balance} creditBalance={creditAccount.balance} />                                                 
-                        <div className="accountsButtonDiv">
-                            <Link to="/accounts/0">
-                                <button>                  
-                                    {"Debit " + debitAccount.balance + "€"}
-                                </button>
-                            </Link>
-                        </div>
-                        {creditAccount.accountNumber !== ''
-                            ? <div className="accountsButtonDiv">
-                                <Link to="/accounts/1">
-                                    <button>
-                                        {"Credit " + creditAccount.balance + "€"}
-                                    </button>
-                                </Link></div>
-                            : null
-                        }
-                    </div>
-                    {creditAccount.accountNumber === ''
+                <>
+                    {user.userId
                         ?
-                        <div className="creditDiv">
-                            {creditSuccess
+                        <section>
+                            <div className="logout">
+                                <button onClick={handleLogOut}>Log Out</button>
+                            </div>
+                            <div className="infoDiv">
+                                <h4>Personal Info </h4>
+                                {userInfo.firstname !== ''
+                                    ? <span>{userInfo.firstname + " " + userInfo.lastname}</span>
+                                    : " -"
+                                }
+                                <br />
+                                {userInfo.address !== ''
+                                    ? <span>{userInfo.address}</span>
+                                    : " -"
+                                }
+                                <br />
+                                {userInfo.phonenumber !== ''
+                                    ? <span>{userInfo.phonenumber}</span>
+                                    : " -"
+                                }
+                                <div className="infoUpdate">
+                                    <h5>Want to update info?</h5>
+                                    <Link to="/updateInfo">
+                                        <button className="updateInfoButton">
+                                            Update Info
+                                        </button>
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className="accountsDiv">
+                                <h3>Accounts</h3>
+                                <Transfer setUpdate={setUpdate} debit={debitAccount.accountNumber} credit={creditAccount.accountNumber} debitBalance={debitAccount.balance} creditBalance={creditAccount.balance} />
+                                <div className="accountsButtonDiv">
+                                    <Link to="/accounts/0">
+                                        <button>
+                                            {"Debit " + debitAccount.balance + "€"}
+                                        </button>
+                                    </Link>
+                                </div>
+                                {creditAccount.accountNumber !== ''
+                                    ? <div className="accountsButtonDiv">
+                                        <Link to="/accounts/1">
+                                            <button>
+                                                {"Credit " + creditAccount.balance + "€"}
+                                            </button>
+                                        </Link></div>
+                                    : null
+                                }
+                            </div>
+                            {creditAccount.accountNumber === ''
                                 ?
-                                <div className="successCredit">
-                                    <h3> Success! </h3>
-                                    <h4>New credit account created. </h4>
-                                    <p>Your Credit limit is automatically
-                                        set to 2000. When you login next time
-                                        your credit account should appear under Accounts:</p>
+                                <div className="creditDiv">
+                                    {creditSuccess
+                                        ?
+                                        <div className="successCredit">
+                                            <h3> Success! </h3>
+                                            <h4>New credit account created. </h4>
+                                            <p>Your Credit limit is automatically
+                                                set to 2000. When you login next time
+                                                your credit account should appear under Accounts:</p>
+                                        </div>
+                                        : <div>
+                                            <h4> Don't have an credit account?</h4>
+                                            <span className="error">
+                                                {errorMessage}
+                                            </span>
+                                            <button onClick={handleCreditCreate} className="createCreditButton">
+                                                Create Credit Account
+                                            </button>
+                                        </div>
+                                    }
                                 </div>
-                                : <div>
-                                    <h4> Don't have an credit account?</h4>
-                                    <span className="error">
-                                        {errorMessage}
-                                    </span>
-                                    <button onClick={handleCreditCreate} className="createCreditButton">
-                                        Create Credit Account
-                                    </button>
-                                </div>
+                                : null
                             }
-                        </div>
-                        : null
+                        </section>
+                        : <NotFound />
                     }
-                </section>
-                : <NotFound />
+                </>
+                : <LogOut />
             }
         </>
     )
