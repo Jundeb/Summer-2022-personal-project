@@ -21,7 +21,7 @@ const handleRefreshToken = async (req, res) => {
             const roles = Object.values(foundUser.roles);
             //creates a new access token for user when refreshing???
             const accessToken = jwt.sign(
-                { 'UserInfo': {
+                { 'userInfo': {
                     'username': decoded.username,
                     'roles': roles
                     }
@@ -32,6 +32,7 @@ const handleRefreshToken = async (req, res) => {
             res.json({ accessToken });
         }
     );
+    
 
 }
 

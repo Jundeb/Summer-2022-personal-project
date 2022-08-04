@@ -49,7 +49,7 @@ const transferHandler = async (req, res) => {
             'from': account1_accountNumber,
             'to': account2_accountNumber,
             'amount': amount,
-            'date': d.toDateString(),
+            'date': d.toLocaleString("fi-FI"),
             'transaction_name': 'Send'
         });
 
@@ -57,7 +57,7 @@ const transferHandler = async (req, res) => {
             'from': account1_accountNumber,
             'to': account2_accountNumber,
             'amount': amount,
-            'date': d.toDateString(),
+            'date': d.toLocaleString("fi-FI"),
             'transaction_name': 'Receive'
         });
 
@@ -70,7 +70,6 @@ const transferHandler = async (req, res) => {
             const result = await foundUser1.save();
             const result2 = await foundUser2.save();
         }
-        console.log(foundUser1, foundUser2);
     }
     res.status(200).json({"message": "Success"});
 }

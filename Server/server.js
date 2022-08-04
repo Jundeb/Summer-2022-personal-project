@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions');
-const { logger }= require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
 const verifyJWT = require('./middleware/verifyJWT');
 const credentials = require('./middleware/credentials');
@@ -15,9 +14,6 @@ const PORT = process.env.PORT || 3500;
 
 //Connect to MongoDB
 connectDB();
-
-//custom middleware logger 
-app.use(logger);
 
 //Handle options credentials and
 //and fetch cookies credentials requirement
@@ -54,12 +50,11 @@ app.use('/transaction', require('./routes/api/transactionRouter'));
 app.use('/account', require('./routes/api/accountRouter'));
 app.use('/info', require('./routes/api/personalInfoRouter'));
 
-
 app.all('*', (req, res) => {
     res.sendStatus(404);
 });
 
-//handling errors and login them
+//handling errors
 app.use(errorHandler);
 
 mongoose.connection.once('open', () => {
