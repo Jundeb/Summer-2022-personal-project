@@ -6,7 +6,6 @@ const verifyRoles = require('../../middleware/verifyRoles');
 
 router.route('/')
     .get(verifyRoles(ROLES_LIST.Admin), userController.getAllUsers)
-    .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.User), userController.changePassword)
     .post(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.User) ,userController.getOneUser);
 
 module.exports = router;

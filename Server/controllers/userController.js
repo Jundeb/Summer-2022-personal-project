@@ -6,18 +6,18 @@ const getAllUsers = async (req, res) => {
     const users = await User.find({});
 
     //no users found
-    if(!users) return res.status(204).json({ 'message': 'No users found.'});
+    if (!users) return res.status(204).json({ 'message': 'No users found.' });
 
     res.json(users);
 }
 
 const getOneUser = async (req, res) => {
-    if(!req?.body?.userId) return res.status(400).json({ 'message': 'User id required.'});
+    if (!req?.body?.userId) return res.status(400).json({ 'message': 'User id required.' });
 
     //find user by ID
-    const user = await User.findOne({ _id: req.body.userId}).exec();
+    const user = await User.findOne({ _id: req.body.userId }).exec();
 
-    if(!user) return res.status(204).json({ 'message': `No user matches ID: ${req.body.userId}.`});
+    if (!user) return res.status(204).json({ 'message': `No user matches ID: ${req.body.userId}.` });
 
     const personalInfo = user.personal_info;
 
@@ -26,60 +26,35 @@ const getOneUser = async (req, res) => {
     const balance = user.bank_accounts[0].balance;
     const limit = user.bank_accounts[0].limit;
 
-    const account1 ={ 
+    const account1 = {
         "accountId": accountId,
         "accountNumber": accountNumber,
         "balance": balance,
         "limit": limit
     };
 
-    if(user.bank_accounts.length === 1){
-        res.json({personalInfo, account1});
+    if (user.bank_accounts.length === 1) {
+        res.json({ personalInfo, account1 });
     }
-    else{
+    else {
         const accountId2 = user.bank_accounts[1]._id;
         const accountNumber2 = user.bank_accounts[1].account_number;
         const balance2 = user.bank_accounts[1].balance;
         const limit2 = user.bank_accounts[1].limit;
 
-        const account2 ={ 
+        const account2 = {
             "accountId": accountId2,
             "accountNumber": accountNumber2,
             "balance": balance2,
             "limit": limit2
-            };
+        };
 
-        res.json({personalInfo, account1, account2});
+        res.json({ personalInfo, account1, account2 });
     }
 }
 
-const changePassword = async (req, res) => {
-    if(!req?.body?.userId) return res.status(400).json({ 'message': 'ID parameter is required.'});
-
-    const user = await User.findOne({ _id: req.body.userId}).exec();
-   
-    if(!user) return res.status(204).json({ 'message': `No user matches ID : ${req.body.userId}.`});
-
-    const newPassword = req.body.password;
-
-    if(!newPassword) return res.status(400).json({'message': 'New password missing.'});
-
-    try{
-        //encrypting the password
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
-        //save password
-        const result = await user.save();
-
-        console.log(result); //del after dev
-       
-        res.status(200).json({'success': `Password changed succesfully.`});
-    } catch(err) {
-        res.status(500).json({'message': err.message});
-    }
-}
 
 module.exports = {
     getAllUsers,
-    getOneUser,
-    changePassword
+    getOneUser
 }
