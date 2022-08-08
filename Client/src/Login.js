@@ -26,13 +26,13 @@ const Login = () => {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
                 });
-                
+
             const accessToken = response?.data?.accessToken;
             const userId = response?.data?.usersID;
 
             console.log(response.data);
             setUser({ userId, username, accessToken });
-            
+
             setUsername('');
             setPassword('');
             setSuccess(true);
@@ -98,11 +98,15 @@ const Login = () => {
                         <br />
                         <button className="loginButton">Sign In</button>
                     </form>
-                    <p className="needAnAccount">
-                        Need an account? 
-                        <br />
-                        <Link to="/register">Sign Up</Link>
+                    <p className="forgottenPassword">
+                        <Link to="/changepassword">Forgotten Password?</Link>
                     </p>
+                    <div className="line">
+                    </div>
+                    <div className="needAnAccount">
+                        <p>Need an account?</p>
+                        <Link to="/register">Sign Up</Link>
+                    </div>
                 </section>
                 )
             }

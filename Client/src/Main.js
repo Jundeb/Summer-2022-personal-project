@@ -8,7 +8,6 @@ import { Link } from "react-router-dom"
 import axios from "./api/axios";
 import UserContext from "./context/userProvider";
 import useRefreshToken from "./hooks/useRefreshToken";
-import { Timer } from "ag-grid-community";
 
 const Main = () => {
     const { user, setUser } = useContext(UserContext);
@@ -36,7 +35,6 @@ const Main = () => {
                         withCredentials: true
                     }
                 );
-                console.log(response.data);
 
                 setUserInfo({
                     firstname: response.data.personalInfo.firstname,
@@ -110,7 +108,7 @@ const Main = () => {
 
     const handleLogOut = async () => {
 
-        setUser({ accessToken: null });
+        setUser(null);
         setLogOut(true);
         try {
             const response = await axios.get('/logout', {
@@ -132,9 +130,6 @@ const Main = () => {
                     {user.userId
                         ?
                         <section>
-                            <div className="logout">
-                                <button onClick={handleLogOut}>Log Out</button>
-                            </div>
                             <div className="infoDiv">
                                 <h4>Personal Info </h4>
                                 {userInfo.firstname !== ''
@@ -205,6 +200,9 @@ const Main = () => {
                                 </div>
                                 : null
                             }
+                            <div className="logOutMain">
+                                <button onClick={handleLogOut}>Log Out</button>
+                            </div>
                         </section>
                         : <NotFound />
                     }

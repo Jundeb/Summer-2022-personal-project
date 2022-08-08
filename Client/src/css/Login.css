@@ -25,7 +25,7 @@
     color: white;
     background-color: rgb(57, 131, 160);
     border-radius: 40px;
-    margin-top: 5px;
+    margin-top: 10px;
     text-align: center;
     cursor: pointer;
     border: none;
@@ -35,6 +35,18 @@
 
 .loginButton:enabled:hover {
     background-color: rgb(81, 140, 163);
+  }
+
+  .forgottenPassword{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .line{
+    margin: auto;
+    height: 1px;
+    width: 300px;
+    background-color: white;
   }
 
  .needAnAccount{

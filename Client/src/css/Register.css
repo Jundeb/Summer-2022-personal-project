@@ -21,10 +21,6 @@
   margin-bottom: 10px;
 }
 
-#confirmPasswordNote{
-  margin-bottom: 15px;
-}
-
 .infoCircle{
   margin-right: 3px;
 }
@@ -45,7 +41,8 @@
   color: white;
   background-color: rgb(57, 131, 160);
   border-radius: 40px;
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   text-align: center;
   cursor: pointer;
   border: none;

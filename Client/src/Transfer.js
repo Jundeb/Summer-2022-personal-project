@@ -15,6 +15,7 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
     //loading is for visual loading circle
     const [loading, setLoading] = useState(false);
 
+    const [successMessage, setSuccessMessage] = useState('')
     const [errorMessage, setErrorMessage] = useState('');
 
     const [account1, setAccount1] = useState('');
@@ -36,46 +37,55 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
 
     useEffect(() => {
         setErrorMessage('');
+        setSuccessMessage('');
     }, [account1, account2, amount]);
 
     const handleTransaction = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.post('/transaction',
-                JSON.stringify({ account1_accountNumber: account1, account2_accountNumber: account2, amount, method: "transfer" }),
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + user.accessToken
-                    },
-                    withCredentials: true
-                });
+        if (amount % 1 !== 0) {
+            setErrorMessage('Amount must be whole number');
+        }
+        else {
+            setLoading(true);
+            setSuccessMessage('');
+            try {
+                const response = await axios.post('/transaction',
+                    JSON.stringify({ account1_accountNumber: account1, account2_accountNumber: account2, amount, method: "transfer" }),
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + user.accessToken
+                        },
+                        withCredentials: true
+                    });
 
-            console.log(response.data);
-            
-            setTimeout(() => {
+                console.log(response.data);
+                
+                setTimeout(() => {
+                    setLoading(false);
+                }, 1000);
+
+                setSuccessMessage('Transaction Successful!');
+                setUpdate(true);
+
+
+            } catch (error) {
                 setLoading(false);
-            }, 1000);
 
-            setUpdate(true);
-
-        } catch (error) {
-            setLoading(false);
-
-            if (!error?.response) {
-                setErrorMessage('No Server Response');
-            }
-            else if (error.response?.status === 409) {
-                setErrorMessage('Transaction Not Allowed');
-            }
-            else if (error.response?.status === 400) {
-                setErrorMessage('Account Numbers And Amount Required');
-            }
-            else if (error.response?.status === 406) {
-                setErrorMessage('Balance Too Low');
-            }
-            else {
-                setErrorMessage('Transaction Failed');
+                if (!error?.response) {
+                    setErrorMessage('No Server Response');
+                }
+                else if (error.response?.status === 409) {
+                    setErrorMessage('Transaction Not Allowed');
+                }
+                else if (error.response?.status === 400) {
+                    setErrorMessage('Account Numbers And Amount Required');
+                }
+                else if (error.response?.status === 406) {
+                    setErrorMessage('Balance Too Low');
+                }
+                else {
+                    setErrorMessage('Transaction Failed');
+                }
             }
         }
     }
@@ -87,10 +97,15 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
             </button>
             <p>Transfer</p>
             <Dialog open={open}>
-                <DialogTitle sx={{pb: 0}}>Transfer</DialogTitle>
-                <div className="errorTransfer">
-                    {errorMessage}
-                </div>
+                <DialogTitle sx={{ pb: 0 }}>Transfer</DialogTitle>
+                {successMessage !== ''
+                    ? <div className="successTransfer">
+                        {successMessage}
+                    </div>
+                    : <div className="errorTransfer">
+                        {errorMessage}
+                    </div>
+                }
                 <DialogContent>
                     <Box
                         noValidate
@@ -103,7 +118,7 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
                             width: 'fit-content',
                         }}
                     >
-                        <FormControl sx={{ width: 300, mt: 0, pt: 0}}>
+                        <FormControl sx={{ width: 300, mt: 0, pt: 0 }}>
                             <InputLabel htmlFor="account1">From</InputLabel>
                             <Select
                                 value={account1}

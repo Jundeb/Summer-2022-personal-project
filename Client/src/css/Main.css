@@ -102,3 +102,19 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.logOutMain{
+    width: 250px;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(35, 54, 82);
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+    margin: auto; 
+}
+
+.logOutMain button{
+    width: 100px;
+    height: 25px;
+}

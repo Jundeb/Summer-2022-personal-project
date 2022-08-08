@@ -1,6 +1,6 @@
 import "./css/Accounts.css"
-import { useState, useEffect, useContext, useParams } from "react"
-import { AgGridColumn, AgGridReact } from "ag-grid-react"
+import { useState, useEffect, useContext } from "react"
+import { AgGridReact } from "ag-grid-react"
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import axios from "./api/axios"
@@ -15,7 +15,16 @@ const Accounts = () => {
     const accountNumber = findNum[2];
 
     const [account, setAccount] = useState({ accountNumber: '', balance: '', limit: '' });
+
     const [transactions, setTransactions] = useState([]);
+
+    const columnDefs = [
+        { field: 'date', sort: 'desc', sortable: true },
+        { field: 'transaction_name', headerName: 'Transaction Name' },
+        { field: 'amount' },
+        { field: 'from' },
+        { field: 'to' },
+    ];
 
     useEffect(() => {
         const getAccount = async () => {
@@ -33,7 +42,6 @@ const Accounts = () => {
                         withCredentials: true
                     }
                 );
-                console.log(response.data);
                 setAccount({
                     accountId: response.data.accountId,
                     accountNumber: response.data.accountNumber,
@@ -64,12 +72,7 @@ const Accounts = () => {
                     </div>
                 </div>
                 <div className="ag-theme-material" style={{ height: 585, width: 1020, margin: 'auto' }}>
-                    <AgGridReact rowData={transactions} >
-                        <AgGridColumn sortable={true} field='date' headerName="Date" />
-                        <AgGridColumn field='transaction_name' headerName="Transaction Name" />
-                        <AgGridColumn field='amount' headerName="Amount" />
-                        <AgGridColumn field='from' headerName="From" />
-                        <AgGridColumn field='to' headerName="To" />
+                    <AgGridReact rowData={transactions} columnDefs={columnDefs} >
                     </AgGridReact>
                 </div>
             </div>

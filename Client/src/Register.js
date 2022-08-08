@@ -122,7 +122,7 @@ const Register = () => {
                 onBlur={() => setUserFocus(false)}
               />
               {(userFocus && !validName) &&
-                <p id="uidnote" className="instructions">
+                <p className="instructions">
                   <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
                   4 to 23 characters.<br />
                   Must begin with a letter <br />
@@ -154,7 +154,7 @@ const Register = () => {
                 onBlur={() => setPasswordFocus(false)}
               />
               {(passwordFocus && !validPassword) &&
-                <p id="passwordNote" className="instructions">
+                <p className="instructions">
                  <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
                   5 to 24 characters. <br />
                   Must include uppercase and lowercase letters, a number and a special character. <br />
@@ -186,7 +186,7 @@ const Register = () => {
                 onBlur={() => setMatchFocus(false)}
               />
               {(matchFocus && !validMatch) &&
-                <p id="confirmPasswordNote" className="instructions">
+                <p className="instructions">
                   <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
                   Must be same as password.
                 </p>
@@ -196,11 +196,11 @@ const Register = () => {
                 Sign Up
               </button>
             </form>
-            <p className="alreadyRegistered">
-              Already registered?
-              <br />
+            <div className="line"></div>
+            <div className="alreadyRegistered">
+              <p>Already registered?</p>
               <Link to="/login">Sign In</Link>
-            </p>
+            </div>
           </section>
         )
       }
