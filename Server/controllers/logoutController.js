@@ -11,14 +11,14 @@ const handleLogout = async (req, res) => {
     const foundUser = await User.findOne({ refreshToken }).exec();
 
     if(!foundUser) {
-        res.clearCookie('userCookie', { httpOnly: true, sameSite: 'None'}); //after dev set secure: true
+        res.clearCookie('userCookie', { httpOnly: true, secure: true, sameSite: 'None'}); //after dev set secure: true
         return res.sendStatus(204);
     }
 
     //Delete refreshToken in db
     foundUser.refreshToken = '';
     const result = await foundUser.save();
-    res.clearCookie('userCookie', {httpOnly: true, sameSite: 'None'}); //after dev set secure: true -only serves https
+    res.clearCookie('userCookie', {httpOnly: true, secure: true, sameSite: 'None'}); //after dev set secure: true -only serves https
     return res.sendStatus(204);
 }
 

@@ -36,7 +36,7 @@ const handleLogin = async (req, res) => {
         const usersID = foundUser._id;
         const personal_info = foundUser.personal_info;
 
-        res.cookie('userCookie', refreshToken, { httpOnly: true,  maxAge: 24 * 60 * 60  * 1000}); //set secure: true after dev and update options!!
+        res.cookie('userCookie', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60  * 1000}); //set secure: true after dev and update options!!
         return res.json({ usersID, accessToken });
     } else return res.sendStatus(401);
 }
