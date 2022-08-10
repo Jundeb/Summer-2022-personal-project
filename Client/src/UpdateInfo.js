@@ -47,7 +47,8 @@ const UpdateInfo = () => {
                 setErrorMessage('No Server Response');
             }
             else if(error.response.status === 403 || error.response.status === 401){
-                window.location.href = "http://localhost:3000/main"
+                //change to http://localhost:3000/main when in dev
+                window.location.href = "https://webbank-junnukyro.herokuapp.com/main"
             }
             else {
                 setErrorMessage('Update Failed');

@@ -78,7 +78,7 @@ const Register = () => {
 
   if(success){
     setTimeout(() => {
-      window.location.href = "http://localhost:3000/login";
+      window.location.href = "https://webbank-junnukyro.herokuapp.com/login";
     }, 2000);
   }
 
