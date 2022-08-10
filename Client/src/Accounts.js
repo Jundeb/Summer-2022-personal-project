@@ -1,8 +1,10 @@
 import "./css/Accounts.css"
 import { useState, useEffect, useContext } from "react"
+
 import { AgGridReact } from "ag-grid-react"
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
+
 import axios from "./api/axios"
 import UserContext from "./context/userProvider"
 
@@ -10,6 +12,8 @@ import UserContext from "./context/userProvider"
 const Accounts = () => {
     const { user } = useContext(UserContext);
 
+    //in Main when user selects which account to view, pathname ends either to 0 or 1
+    //and then the number is saved in a accountNumber variable
     const pathname = window.location.pathname;
     const findNum = pathname.split("/");
     const accountNumber = findNum[2];
@@ -26,6 +30,7 @@ const Accounts = () => {
         { field: 'to' },
     ];
 
+    //gets user account information and all transactions
     useEffect(() => {
         const getAccount = async () => {
 
@@ -42,6 +47,7 @@ const Accounts = () => {
                         withCredentials: true
                     }
                 );
+
                 setAccount({
                     accountId: response.data.accountId,
                     accountNumber: response.data.accountNumber,
@@ -51,8 +57,10 @@ const Accounts = () => {
 
                 setTransactions(response.data.transactions);
 
-            } catch (err) {
-                console.log(err.response);
+            } catch (error) {
+                if (error.response.status === 403 || error.response.status === 401) {
+                    window.location.href = "http://localhost:3000/main"
+                }
             }
         }
         getAccount();

@@ -1,11 +1,20 @@
 import "./css/NotFound.css"
-import { Link } from "react-router-dom"
+import { useEffect } from "react";
 
 const NotFound = () => {
+
+  //redirects to Login when on a wrong page
+  useEffect(() => {
+    setTimeout(() => {
+      window.location.href = "http://localhost:3000/login"
+    }, 2500
+    );
+  }, []);
+
   return (
     <div className="notFound">
       <h1>Page not found</h1>
-      <Link to="/login">Go To Login Page</Link>
+      <p>Redirecting to Login page.</p>
     </div>
   );
 }

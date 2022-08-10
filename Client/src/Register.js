@@ -37,7 +37,6 @@ const Register = () => {
     setValidPassword(result);
     const match = password === matchPassword;
     password.length > 0 ? setValidMatch(match) : setValidMatch(false)
-    console.log(match);
   }, [password, matchPassword]);
 
   useEffect(() => {
@@ -63,9 +62,6 @@ const Register = () => {
         }
       );
 
-      console.log(response.data);
-      console.log(response.accessToken);
-      console.log(JSON.stringify(response));
       setSuccess(true);
 
     } catch (err) {
@@ -80,6 +76,12 @@ const Register = () => {
     }
   }
 
+  if(success){
+    setTimeout(() => {
+      window.location.href = "http://localhost:3000/login";
+    }, 2000);
+  }
+
   return (
     <>
       {success
@@ -89,119 +91,119 @@ const Register = () => {
             <p>
               <Link to="/login">Sign In</Link>
             </p>
-          </section> )
-        : 
-          (<section className="registerSection">
-            <h1>Register</h1>
-            <span className="error">
-              {errorMessage}
-            </span>
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="username">
-                Username
-                {validName &&
-                  <span className="valid">
-                    <FontAwesomeIcon icon={faCheck} />
-                  </span>
-                }
-                {(!validName && user) &&
-                  <span className="invalid">
-                    <FontAwesomeIcon icon={faXmark} />
-                  </span>
-                }
-              </label>
-              <br />
-              <input
-                className="registerInput"
-                type="text"
-                id="username"
-                autoComplete="off"
-                onChange={(event) => setUser(event.target.value)}
-                required
-                onFocus={() => setUserFocus(true)}
-                onBlur={() => setUserFocus(false)}
-              />
-              {(userFocus && !validName) &&
-                <p className="instructions">
-                  <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
-                  4 to 23 characters.<br />
-                  Must begin with a letter <br />
-                  Letters, numbers, underscores, hyphens allowed.
-                </p>
+          </section>)
+        :
+        (<section className="registerSection">
+          <h1>Register</h1>
+          <span className="error">
+            {errorMessage}
+          </span>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="username">
+              Username
+              {validName &&
+                <span className="valid">
+                  <FontAwesomeIcon icon={faCheck} />
+                </span>
               }
-              <br />
-              <label htmlFor="password">
-                Password
-                {validPassword &&
-                  <span className="valid">
-                    <FontAwesomeIcon icon={faCheck} />
-                  </span>
-                }
-                {(!validPassword && password) &&
-                  <span className="invalid">
-                    <FontAwesomeIcon icon={faXmark} />
-                  </span>
-                }
-              </label>
-              <br />
-              <input
-                className="registerInput"
-                type="password"
-                id="password"
-                onChange={(event) => setPassword(event.target.value)}
-                required
-                onFocus={() => setPasswordFocus(true)}
-                onBlur={() => setPasswordFocus(false)}
-              />
-              {(passwordFocus && !validPassword) &&
-                <p className="instructions">
-                 <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
-                  5 to 24 characters. <br />
-                  Must include uppercase and lowercase letters, a number and a special character. <br />
-                  Allowed special characters: !@?$
-                </p>
+              {(!validName && user) &&
+                <span className="invalid">
+                  <FontAwesomeIcon icon={faXmark} />
+                </span>
               }
-              <br />
-              <label htmlFor="confirmPassword">
-                Confirm password
-                {(validMatch && matchPassword) &&
-                  <span className="valid">
-                    <FontAwesomeIcon icon={faCheck} />
-                  </span>
-                }
-                {(!validMatch && matchPassword) &&
-                  <span className="invalid">
-                    <FontAwesomeIcon icon={faXmark} />
-                  </span>
-                }
-              </label>
-              <br />
-              <input
-                className="registerInput"
-                type="password"
-                id="confirmPassword"
-                onChange={(event) => setMatchPassword(event.target.value)}
-                required
-                onFocus={() => setMatchFocus(true)}
-                onBlur={() => setMatchFocus(false)}
-              />
-              {(matchFocus && !validMatch) &&
-                <p className="instructions">
-                  <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
-                  Must be same as password.
-                </p>
+            </label>
+            <br />
+            <input
+              className="registerInput"
+              type="text"
+              id="username"
+              autoComplete="off"
+              onChange={(event) => setUser(event.target.value)}
+              required
+              onFocus={() => setUserFocus(true)}
+              onBlur={() => setUserFocus(false)}
+            />
+            {(userFocus && !validName) &&
+              <p className="instructions">
+                <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
+                4 to 23 characters.<br />
+                Must begin with a letter <br />
+                Letters, numbers, underscores, hyphens allowed.
+              </p>
+            }
+            <br />
+            <label htmlFor="password">
+              Password
+              {validPassword &&
+                <span className="valid">
+                  <FontAwesomeIcon icon={faCheck} />
+                </span>
               }
-              <br/>
-              <button className ="registerButton" disabled={!validName || !validPassword || !validMatch ? true : false}>
-                Sign Up
-              </button>
-            </form>
-            <div className="line"></div>
-            <div className="alreadyRegistered">
-              <p>Already registered?</p>
-              <Link to="/login">Sign In</Link>
-            </div>
-          </section>
+              {(!validPassword && password) &&
+                <span className="invalid">
+                  <FontAwesomeIcon icon={faXmark} />
+                </span>
+              }
+            </label>
+            <br />
+            <input
+              className="registerInput"
+              type="password"
+              id="password"
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              onFocus={() => setPasswordFocus(true)}
+              onBlur={() => setPasswordFocus(false)}
+            />
+            {(passwordFocus && !validPassword) &&
+              <p className="instructions">
+                <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
+                5 to 24 characters. <br />
+                Must include uppercase and lowercase letters, a number and a special character. <br />
+                Allowed special characters: !@?$
+              </p>
+            }
+            <br />
+            <label htmlFor="confirmPassword">
+              Confirm password
+              {(validMatch && matchPassword) &&
+                <span className="valid">
+                  <FontAwesomeIcon icon={faCheck} />
+                </span>
+              }
+              {(!validMatch && matchPassword) &&
+                <span className="invalid">
+                  <FontAwesomeIcon icon={faXmark} />
+                </span>
+              }
+            </label>
+            <br />
+            <input
+              className="registerInput"
+              type="password"
+              id="confirmPassword"
+              onChange={(event) => setMatchPassword(event.target.value)}
+              required
+              onFocus={() => setMatchFocus(true)}
+              onBlur={() => setMatchFocus(false)}
+            />
+            {(matchFocus && !validMatch) &&
+              <p className="instructions">
+                <span className="infoCircle"><FontAwesomeIcon icon={faInfoCircle} /></span>
+                Must be same as password.
+              </p>
+            }
+            <br />
+            <button className="registerButton" disabled={!validName || !validPassword || !validMatch ? true : false}>
+              Sign Up
+            </button>
+          </form>
+          <div className="line"></div>
+          <div className="alreadyRegistered">
+            <p>Already registered?</p>
+            <Link to="/login">Sign In</Link>
+          </div>
+        </section>
         )
       }
     </>

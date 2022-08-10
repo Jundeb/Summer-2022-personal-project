@@ -7,6 +7,7 @@ import Accounts from './Accounts';
 import UpdateInfo from './UpdateInfo';
 import NotFound from './NotFound';
 import { Routes, Route } from 'react-router-dom';
+import LogOut from './LogOut';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/main' element={<Main />} />
         <Route path='/accounts/:accountNum' element={<Accounts />} />
         <Route path="/updateinfo" element={<UpdateInfo />} />
+        <Route path="/logout" element={<LogOut />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </main>

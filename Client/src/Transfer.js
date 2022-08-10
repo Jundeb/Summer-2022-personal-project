@@ -22,6 +22,7 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
     const [account2, setAccount2] = useState('');
     const [amount, setAmount] = useState('');
 
+    //setting states empty and false when closing transaction dialog
     const handleClose = () => {
         setOpen(false);
         setLoading(false);
@@ -31,23 +32,32 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
         setAmount('');
     }
 
+    //opens transaction dialog when pressing the transfer icon
     const handleOpen = () => {
         setOpen(true);
     }
 
+    //setting error and success messages empty when changing any input in transaction dialog
     useEffect(() => {
         setErrorMessage('');
         setSuccessMessage('');
     }, [account1, account2, amount]);
 
     const handleTransaction = async () => {
+
+        //if given amount is not a whole number set error message
         if (amount % 1 !== 0) {
             setErrorMessage('Amount must be whole number');
         }
         else {
+
+            //setLoading(true) starts the ClipLoader icon
             setLoading(true);
+
             setSuccessMessage('');
+
             try {
+                //tries to make transaction
                 const response = await axios.post('/transaction',
                     JSON.stringify({ account1_accountNumber: account1, account2_accountNumber: account2, amount, method: "transfer" }),
                     {
@@ -58,20 +68,26 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
                         withCredentials: true
                     });
 
-                console.log(response.data);
-                
+                //latency fot circle icon
                 setTimeout(() => {
                     setLoading(false);
                 }, 1000);
 
                 setSuccessMessage('Transaction Successful!');
+
+                //setUpdate(true) result in making an request to server for getting updated account information
                 setUpdate(true);
 
 
             } catch (error) {
                 setLoading(false);
 
-                if (!error?.response) {
+                //when refresh token is not valid reroute to main
+                if(error.response.status === 403){
+                    window.location.href = "http://localhost:3000/main"
+                }
+
+                else if (!error?.response) {
                     setErrorMessage('No Server Response');
                 }
                 else if (error.response?.status === 409) {

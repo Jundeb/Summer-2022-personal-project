@@ -7,11 +7,9 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom"
 import axios from "./api/axios";
 import UserContext from "./context/userProvider";
-import useRefreshToken from "./hooks/useRefreshToken";
 
 const Main = () => {
     const { user, setUser } = useContext(UserContext);
-    const refresh = useRefreshToken();
 
     const [update, setUpdate] = useState(false);
     const [userInfo, setUserInfo] = useState({ firstname: '', lastname: '', address: '', phonenumber: '' });
@@ -59,7 +57,9 @@ const Main = () => {
                     });
                 }
             } catch (err) {
-                console.error(err.data);
+                if(err.response.status === 401 || err.response.status === 403){
+                    handleLogOut();
+                }
             }
         }
         getUser();
@@ -67,6 +67,22 @@ const Main = () => {
     }, [update]);
 
     useEffect(() => {
+        const refresh = async () => {
+            try {
+                const response = await axios.get('/refresh', {
+                    withCredentials: true
+                });
+
+                setUser(prev => {
+                    return { ...prev, accessToken: response.data.accessToken }
+                });
+
+            } catch (error) {
+                if (error.response.status === 403) {
+                    handleLogOut();
+                }
+            }
+        }
         refresh();
     }, []);
 
@@ -82,7 +98,6 @@ const Main = () => {
                     withCredentials: true
                 });
 
-            console.log(response.data);
             setCreditSuccess(true);
             setErrorMessage('');
 
@@ -90,7 +105,6 @@ const Main = () => {
 
             setCreditSuccess(false);
 
-            console.log(error.response.data);
             if (!error?.response) {
                 setErrorMessage('No Server Response');
             }
@@ -110,12 +124,11 @@ const Main = () => {
 
         setUser(null);
         setLogOut(true);
+
         try {
             const response = await axios.get('/logout', {
                 withCredentials: true
             });
-
-            console.log(response.status);
 
         } catch (error) {
             console.log(error.response);

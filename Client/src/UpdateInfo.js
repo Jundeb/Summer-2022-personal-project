@@ -20,13 +20,14 @@ const UpdateInfo = () => {
     const [success, setSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
+    //setting error message empty when changing any input
     useEffect(() => {
         setErrorMessage('');
     }, [firstname, lastname, address, phonenumber]);
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(user.userId, firstname, lastname, address, phonenumber);
         try {
             const response = await axios.post(UPDATEINFO_URL,
                 JSON.stringify({ id: user.userId, firstname, lastname, address, phonenumber }),
@@ -39,12 +40,14 @@ const UpdateInfo = () => {
                 }
             );
 
-            console.log(response.data);
             setSuccess(true);
 
         } catch (error) {
             if (!error?.response) {
                 setErrorMessage('No Server Response');
+            }
+            else if(error.response.status === 403 || error.response.status === 401){
+                window.location.href = "http://localhost:3000/main"
             }
             else {
                 setErrorMessage('Update Failed');
