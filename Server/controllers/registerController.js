@@ -33,8 +33,6 @@ const handleNewUser = async (req, res) => {
             }
 
         });
-
-        console.log(result); //del after dev
        
         res.status(200).send({'success': `New user created`});
     } catch(err) {

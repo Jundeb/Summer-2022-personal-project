@@ -32,11 +32,6 @@ app.use(express.json());
 //middleware for cookies
 app.use(cookieParser());
 
-//for testing
-app.get('/', (req, res) => {
-    res.send('Hi');
-});
-
 //routes
 app.use('/register', require('./routes/registerRouter'));
 app.use('/auth', require('./routes/authRouter'));

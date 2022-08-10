@@ -1,4 +1,4 @@
-//poista tämä sittenkun et enää tarvi ja laita herokun osoite tilalle
-const allowedOrigins = ['http://localhost:3000', 'https://verkkopankki.herokuapp.com'];
+//allowed origins
+const allowedOrigins = ['http://localhost:3000', 'https://webbank-junnukyro.herokuapp.com', 'https://webbank-junnukyro.herokuapp.com/'];
 
 module.exports = allowedOrigins;

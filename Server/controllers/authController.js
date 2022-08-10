@@ -22,13 +22,13 @@ const handleLogin = async (req, res) => {
                     }
                  },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '10s' } //change after dev
+                { expiresIn: '1800s' } //valid for 30 minutes
             );
             
         const refreshToken = jwt.sign(
                 { 'username': foundUser.username },
                 process.env.REFRESH_TOKEN_SECRET,
-                { expiresIn: '1d' } //change after dev
+                { expiresIn: '1d' } //valid for 1 day
             );
 
         foundUser.refreshToken = refreshToken;
@@ -36,7 +36,7 @@ const handleLogin = async (req, res) => {
         const usersID = foundUser._id;
         const personal_info = foundUser.personal_info;
 
-        res.cookie('userCookie', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60  * 1000}); //set secure: true after dev and update options!!
+        res.cookie('userCookie', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60  * 1000}); //set secure: true after dev
         return res.json({ usersID, accessToken });
     } else return res.sendStatus(401);
 }
