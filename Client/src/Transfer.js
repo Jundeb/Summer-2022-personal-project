@@ -46,8 +46,8 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
     const handleTransaction = async () => {
 
         //if given amount is not a whole number set error message
-        if (amount % 1 !== 0) {
-            setErrorMessage('Amount must be whole number');
+        if (amount % 1 !== 0 || amount <= 0) {
+            setErrorMessage('Amount must be greater than 0 and a whole number');
         }
         else {
 
