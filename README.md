@@ -23,8 +23,9 @@ The application is running on a Heroku web server. Heroku is a container-based c
 
 
 ### Application Architecture
+Picture of applications structure
+![](Images/Structure.png)
 
-#### Database:
 Picture of how data is structured in a database:
 ![](Images/MongoDB.png)
 
