@@ -25,8 +25,7 @@ Picture of how data is structured in database:
 The application is running on a Heroku web server. Heroku is a container-based cloud Platform as a Service (PaaS).
 
 
-### Application Architecture, database data structud and APIs
-
+### Application Architecture
 
 
 ### How to run locally
