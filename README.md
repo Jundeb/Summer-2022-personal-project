@@ -22,12 +22,16 @@ I used MongoDB (an open-source NoSQL database) in this project mainly because I 
 The application is running on a Heroku web server. Heroku is a container-based cloud Platform as a Service (PaaS).
 
 
+
 ### Application Architecture
 #### Picture of applications structure:
 ![](Images/Structure.png)
 
 #### Picture of how data is structured in a database:
 ![](Images/MongoDB.png)
+
+
+
 
 ### How to run locally
 1. Have git installed.
