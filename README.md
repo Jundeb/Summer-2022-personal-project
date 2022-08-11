@@ -16,4 +16,14 @@ Projects frontend was created with HTML (Hyper Text Markup Language) for structu
 #### Database
 I used MongoDB (an open-source NoSQL database) in this project mainly because I wanted to learn the basics and the difference between SQL and NoSQL database. Using MongoDB was very pleasant and interesting experience. I think it was very easy to use and I also like the simple structure of NoSQL. 
 
-###Application Architecture, database, 
+### Application Architecture, database, 
+
+### How to run locally
+1. Have git installed.
+2. Select a folder where you want to clone the repository.
+3. Move to Client folder and click Git Bash Here
+4. Write npm i and wait
+5. Write npm start and app should start running on a port 3000.
+6. Move to Server folder and click Git Bash Here
+7. Write npm i and wait
+8. Write npm start and app should start running on a port 3500.
