@@ -14,4 +14,6 @@ Projects backend was created with JavaScript and with the help of Node.js. Node.
 Projects frontend was created with HTML (Hyper Text Markup Language) for structuring a web page, CSS (Cascading Style Sheets) for styling HTML elements and with the help of React (a JavaScript library). I chose to use React, because of its popularity and I also was interested learning the basics of it. I also used npm (a node package manager) mainly for applying and testing all kind of icons, styles and grids.
 
 #### Database
----
+I used MongoDB (an open-source NoSQL database) in this project mainly because I wanted to learn the basics and the difference between SQL and NoSQL database. Using MongoDB was very pleasant and interesting experience. I think it was very easy to use and I also like the simple structure of NoSQL. 
+
+###Application Architecture, database, 
