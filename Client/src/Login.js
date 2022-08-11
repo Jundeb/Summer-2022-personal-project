@@ -1,6 +1,8 @@
 import "./css/Login.css"
+
 import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
+
 import axios from "./api/axios"
 import UserContext from "./context/userProvider"
 
@@ -35,14 +37,14 @@ const Login = () => {
             setUsername('');
             setPassword('');
             setSuccess(true);
-        } catch (err) {
-            if (!err?.response) {
+        } catch (error) {
+            if (!error?.response) {
                 setErrorMessage('No Server Response');
             }
-            else if (err.response?.status === 400) {
+            else if (error.response?.status === 400) {
                 setErrorMessage('Missing Username or Password');
             }
-            else if (err.response?.status === 401) {
+            else if (error.response?.status === 401) {
                 setErrorMessage('Unauthorized');
             }
             else {

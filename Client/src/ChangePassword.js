@@ -1,6 +1,8 @@
 import "./css/ChangePassword.css";
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import axios from "./api/axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faInfoCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -48,8 +50,6 @@ const ChangePassword = () => {
                 }
             );
 
-            console.log(response.status);
-            
             setSuccess(true);
 
         } catch (error) {

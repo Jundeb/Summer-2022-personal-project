@@ -1,4 +1,5 @@
 import './css/App.css'
+
 import Register from "./Register";
 import Login from "./Login";
 import ChangePassword from './ChangePassword';
@@ -6,8 +7,10 @@ import Main from './Main';
 import Accounts from './Accounts';
 import UpdateInfo from './UpdateInfo';
 import NotFound from './NotFound';
-import { Routes, Route } from 'react-router-dom';
 import LogOut from './LogOut';
+
+import { Routes, Route } from 'react-router-dom';
+
 
 
 function App() {

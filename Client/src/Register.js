@@ -1,9 +1,11 @@
 import "./css/Register.css";
+
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faInfoCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom"
 import axios from "./api/axios";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faInfoCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{4,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@?$]).{5,24}$/;
@@ -44,10 +46,13 @@ const Register = () => {
   }, [user, password, matchPassword]);
 
   const handleSubmit = async (event) => {
+
     event.preventDefault();
+    
     //if button enabled with JS hack
     const valid1 = USER_REGEX.test(user);
     const valid2 = PWD_REGEX.test(password);
+
     if (!valid1 || !valid2) {
       setErrorMessage("Invalid Entry");
       return;
@@ -78,7 +83,7 @@ const Register = () => {
 
   if(success){
     setTimeout(() => {
-      window.location.href = "https://webbank-junnukyro.herokuapp.com/login";
+      window.location.href = "http://localhost:3000/login";
     }, 2000);
   }
 

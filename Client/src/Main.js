@@ -20,6 +20,7 @@ const Main = () => {
     const [creditSuccess, setCreditSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
+    //gets user data everytime updates state changes
     useEffect(() => {
         const getUser = async () => {
             try {
@@ -66,6 +67,7 @@ const Main = () => {
         setUpdate(false);
     }, [update]);
 
+    //gets a new accessToken everytime user enters this page
     useEffect(() => {
         const refresh = async () => {
             try {
@@ -86,6 +88,7 @@ const Main = () => {
         refresh();
     }, []);
 
+    //tries to create a credit account for user
     const handleCreditCreate = async () => {
         try {
             const response = await axios.post('/account',
@@ -120,6 +123,7 @@ const Main = () => {
         }
     }
 
+    //sets User to null and sends a request to server which clears cookies
     const handleLogOut = async () => {
 
         setUser(null);

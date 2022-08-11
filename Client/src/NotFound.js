@@ -6,8 +6,7 @@ const NotFound = () => {
   //redirects to Login when on a wrong page
   useEffect(() => {
     setTimeout(() => {
-      //change to http://localhost:3000/login when dev
-      window.location.href = "https://webbank-junnukyro.herokuapp.com/login"
+      window.location.href = "http://localhost:3000/login"
     }, 2500
     );
   }, []);

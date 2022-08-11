@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 
+//Can use user state anywhere needed
 const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
