@@ -21,10 +21,10 @@ I used MongoDB (an open-source NoSQL database) in this project mainly because I 
 ### How to run locally
 1. Have git installed.
 2. Select a folder where you want to clone the repository.
-3. Click Git Bash Here inside the folder and write git clone https://github.com/Jundeb/WebBank.git
+3. Click Git Bash Here inside the folder and write "git clone https://github.com/Jundeb/WebBank.git"
 4. Move to Client folder and click Git Bash Here
-5. Write npm i and wait
-6. Write npm start and app should start running on a port 3000.
+5. Write "npm i" and wait
+6. Write "npm start" and app should start running on a port 3000.
 7. Move to Server folder and click Git Bash Here
-8. Write npm i and wait
-9. Write npm start and app should start running on a port 3500.
+8. Write "npm i" and wait
+9. Write "npm start" and app should start running on a port 3500.
