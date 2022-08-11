@@ -19,7 +19,7 @@ Projects frontend was created with HTML (Hyper Text Markup Language) for structu
 I used MongoDB (an open-source NoSQL database) in this project mainly because I wanted to learn the basics and the difference between SQL and NoSQL database. Using MongoDB was very pleasant and interesting experience. I think it was very easy to use and I also like the simple structure of NoSQL.
 
 Picture of how data is structured in database:
-![](images/filename MongoDB.png)
+![](Images/MongoDB.png)
 
 #### Heroku
 The application is running on a Heroku web server. Heroku is a container-based cloud Platform as a Service (PaaS).
