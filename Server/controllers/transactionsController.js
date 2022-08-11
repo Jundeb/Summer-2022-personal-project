@@ -17,6 +17,7 @@ const transferHandler = async (req, res) => {
     const foundUser2 = await User.findOne({ "bank_accounts.account_number": account2_accountNumber }).exec();
 
     if (!foundUser1 || !foundUser2) return res.status(400).json({ 'message': 'No accounts found.' });
+
     const userAccount1 = foundUser1.bank_accounts.filter(user => user.account_number === account1_accountNumber);
     const userAccount2 = foundUser2.bank_accounts.filter(user => user.account_number === account2_accountNumber);
 
@@ -44,7 +45,7 @@ const transferHandler = async (req, res) => {
 
         const d = new Date();
 
-        //creating transactions for bankaccounts
+        //creating new transaction and pushing it to relevant account
         foundUser1.bank_accounts[account1_num].transactions.push({
             'from': account1_accountNumber,
             'to': account2_accountNumber,
@@ -53,6 +54,7 @@ const transferHandler = async (req, res) => {
             'transaction_name': 'Send'
         });
 
+        //creating new transaction and pushing it to relevant account
         foundUser2.bank_accounts[account2_num].transactions.push({
             'from': account1_accountNumber,
             'to': account2_accountNumber,

@@ -5,6 +5,6 @@ const ROLES_LIST = require('../../config/roles_list');
 const verifyRoles = require('../../middleware/verifyRoles');
 
 router.route('/')
-    .post(verifyRoles(ROLES_LIST.User, ROLES_LIST.Admin), personalInfoController.updateInfo)
+    .post(verifyRoles(ROLES_LIST.User), personalInfoController.updateInfo)
 
 module.exports = router;

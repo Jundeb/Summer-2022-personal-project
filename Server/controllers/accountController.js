@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const crypto = require('crypto');
 
+//returns all user transactions
 const getAllAccountTransactions = async (req, res) => {
 
     const userId = req.body.userId;
@@ -22,6 +23,7 @@ const getAllAccountTransactions = async (req, res) => {
     res.status(200).json({accountNumber, balance, limit, transactions});
 }
 
+//creates a credit account if user doesn't own one yet
 const createNewCreditAccount = async (req, res) => {
 
     const username = req.body.username;
@@ -45,7 +47,7 @@ const createNewCreditAccount = async (req, res) => {
 
     const result = await foundUser.save();
 
-    return res.status(200).json({'success': `New credit account ${foundUser.bank_accounts[1]} created.`});
+    return res.status(200).json({'success': `New credit account created.`});
 
 }
 

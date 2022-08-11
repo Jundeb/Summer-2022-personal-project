@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
+//if user returns to main page returns a new accesstoken
 const handleRefreshToken = async (req, res) => {
     const cookies = req.cookies;
 

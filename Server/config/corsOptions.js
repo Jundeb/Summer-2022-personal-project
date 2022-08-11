@@ -2,7 +2,7 @@ const allowedOrigins = require('./allowedOrigins');
 
 const corsOptions = {
     origin: (origin, callback) => {
-        //poista !origin after development
+        //if the origin where the request was sent is not in allowedOrigins response will be "Not allowed by CORS"
         if(allowedOrigins.indexOf(origin) !== -1){
             callback(null, true);
         } else {

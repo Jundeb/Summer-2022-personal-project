@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//muokkaa tätä devin jälkeen
+//schemas for creating new data to database
 const transactionSchema = new Schema({
     from: String,
     to: String,

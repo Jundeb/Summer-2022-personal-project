@@ -8,7 +8,7 @@ const handleNewUser = async (req, res) => {
 
     if(!username || !password) return res.status(400).json({'message': 'Username and password required.'});
 
-    //check for dublicate usernames in the db
+    //check for dublicate usernames in the database
     const dublicate = await User.findOne({ username: username}).exec();
 
     if(dublicate) return res.status(409).send('Username already exists'); //Conflict
@@ -25,7 +25,7 @@ const handleNewUser = async (req, res) => {
             'username': username,
             'password': hashedPassword,
 
-            //adding 1000 balance for every new user
+            //adding 1000 debit balance for every new user
             'bank_accounts': {
                 'account_number': "FI"+randomString,
                 'balance': 1000,

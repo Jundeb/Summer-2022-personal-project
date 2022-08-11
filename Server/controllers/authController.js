@@ -2,6 +2,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+//returns userId, accesstoken and the RefreshToken as a cookie to client if username and password are correct 
 const handleLogin = async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -34,13 +35,13 @@ const handleLogin = async (req, res) => {
         foundUser.refreshToken = refreshToken;
         const result = await foundUser.save();
         const usersID = foundUser._id;
-        const personal_info = foundUser.personal_info;
 
-        res.cookie('userCookie', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60  * 1000}); //set secure: true after dev
+        res.cookie('userCookie', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60  * 1000});
         return res.json({ usersID, accessToken });
     } else return res.sendStatus(401);
 }
 
+//if username and password with requests body are correct, change the password for username
 const changePassword = async (req, res) => {
 
     if (!req?.body?.username) return res.status(400).json({ 'message': 'Username is required.' });

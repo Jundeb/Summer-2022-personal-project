@@ -1,9 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-//to get the bearer token
-//user must have logged in
-
-//the bearer token is send to a client as a cookie when auth goes trough
+//if accessToken in request header matches env accesstoken proceed
 const verifyJWT = (req, res, next) => {
     const authHeader = req.headers.authorization || req.headers.Authorization;
     if(!authHeader?.startsWith('Bearer')) return res.sendStatus(401);

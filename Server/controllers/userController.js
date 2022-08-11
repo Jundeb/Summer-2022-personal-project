@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
+//only available to admin
 const getAllUsers = async (req, res) => {
     //get all users from database
     const users = await User.find({});
@@ -11,6 +12,7 @@ const getAllUsers = async (req, res) => {
     res.json(users);
 }
 
+//returns user and users bankaccount information
 const getOneUser = async (req, res) => {
     if (!req?.body?.userId) return res.status(400).json({ 'message': 'User id required.' });
 
@@ -33,10 +35,12 @@ const getOneUser = async (req, res) => {
         "limit": limit
     };
 
+    //if user only has one account returns personalInfo and account 1 information
     if (user.bank_accounts.length === 1) {
         res.json({ personalInfo, account1 });
     }
     else {
+        //if user has both debit and credit accounts returns personalinfo and both accounts information
         const accountId2 = user.bank_accounts[1]._id;
         const accountNumber2 = user.bank_accounts[1].account_number;
         const balance2 = user.bank_accounts[1].balance;

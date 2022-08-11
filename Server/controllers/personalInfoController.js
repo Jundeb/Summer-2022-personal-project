@@ -1,5 +1,6 @@
 const User = require('../models/User');
 
+//updates user information in database
 const updateInfo = async (req, res) => {
 
     if(!req?.body?.id){

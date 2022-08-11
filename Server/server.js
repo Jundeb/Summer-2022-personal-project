@@ -38,16 +38,12 @@ app.use('/auth', require('./routes/authRouter'));
 app.use('/refresh', require('./routes/refreshRouter'));
 app.use('/logout', require('./routes/logoutRouter'));
 
-//every route you want to verify needs to be under this
+//routes that require accessToken
 app.use(verifyJWT);
 app.use('/user', require('./routes/api/userRouter'));
 app.use('/transaction', require('./routes/api/transactionRouter'));
 app.use('/account', require('./routes/api/accountRouter'));
 app.use('/info', require('./routes/api/personalInfoRouter'));
-
-app.all('*', (req, res) => {
-    res.sendStatus(404);
-});
 
 //handling errors
 app.use(errorHandler);
