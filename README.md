@@ -2,6 +2,8 @@
 
 ## Project name: WebBank
 
+##Link to app: https://webbank-junnukyro.herokuapp.com/login
+
 ### Primary idea: 
 Projects idea was to create web bank in which users can browse their accounts balances, transactions and transfer money to other accounts. Also users can update their personal information, reset password and create credit account. I took some ideas from our school project -bank-2022- for this project, but I used different tools and methods.
 
@@ -20,6 +22,7 @@ I used MongoDB (an open-source NoSQL database) in this project mainly because I 
 The application is running on a Heroku web server. Heroku is a container-based cloud Platform as a Service (PaaS).
 
 ### Application Architecture, database, 
+
 
 ### How to run locally
 1. Have git installed.
