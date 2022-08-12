@@ -5,7 +5,7 @@
 ## Link to app: https://webbank-junnukyro.herokuapp.com/login
 
 ### Primary idea: 
-Projects idea was to create web bank in which users can browse their accounts balances, transactions and transfer money to other accounts. Also users can update their personal information, change password and create credit account. I took some ideas from our school project -bank-2022- for this project, but I used different tools and methods.
+Projects idea was to create a web bank in which users can browse their accounts balances, transactions and transfer money to other accounts. Also users can update their personal information, change password and create credit account. I took some ideas from our school project -bank-2022- for this project, but I used different tools and methods.
 
 ### Technologies and tools:
 
