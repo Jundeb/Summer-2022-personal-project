@@ -75,7 +75,7 @@ const ChangePassword = () => {
                 ? <section className="successUpdateinfo">
                     <h1>Success!</h1> <br />
                     <h4>Password Changed!</h4>
-                    <Link to="/login">Go To Login</Link>
+                    <Link to="/main">Go To Home</Link>
                 </section>
                 : <section className="changePassword">
                     <h1>Change Password</h1>
@@ -145,7 +145,7 @@ const ChangePassword = () => {
                     </form>
                     <div className="line"></div>
                     <div className="changePasswordSignIn">
-                        <Link to="/login">Sign In</Link>
+                        <Link to="/main">Go To Main</Link>
                     </div>
                 </section>
             }

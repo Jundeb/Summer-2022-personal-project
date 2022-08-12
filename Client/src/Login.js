@@ -99,9 +99,6 @@ const Login = () => {
                         <br />
                         <button className="loginButton">Sign In</button>
                     </form>
-                    <p className="forgottenPassword">
-                        <Link to="/changepassword">Forgotten Password?</Link>
-                    </p>
                     <div className="line">
                     </div>
                     <div className="needAnAccount">

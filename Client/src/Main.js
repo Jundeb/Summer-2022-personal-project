@@ -58,7 +58,7 @@ const Main = () => {
                     });
                 }
             } catch (err) {
-                if(err.response.status === 401 || err.response.status === 403){
+                if (err.response.status === 401 || err.response.status === 403) {
                     handleLogOut();
                 }
             }
@@ -217,9 +217,13 @@ const Main = () => {
                                 </div>
                                 : null
                             }
-                            <div className="logOutMain">
+                            <div className="bottom">
                                 <button onClick={handleLogOut}>Log Out</button>
+                                <p className="forgottenPassword">
+                                    <Link to="/changepassword">Change Password</Link>
+                                </p>
                             </div>
+
                         </section>
                         : <NotFound />
                     }

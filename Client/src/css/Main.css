@@ -103,7 +103,7 @@
     margin-bottom: 5px;
 }
 
-.logOutMain{
+.bottom{
     width: 250px;
     height: auto;
     padding: 20px;
@@ -114,7 +114,8 @@
     margin: auto; 
 }
 
-.logOutMain button{
+.bottom button{
+    margin-top: 10px;
     width: 100px;
     height: 25px;
 }
