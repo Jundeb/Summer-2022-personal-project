@@ -10,7 +10,7 @@ Projects idea was to create a web bank in which users can browse their accounts 
 ### Technologies and tools:
 
 #### Backend
-Projects backend was created with Node.js and JavaScript. Node.js has npm (a node package manager), which was very useful and I used various packages from its library. Worth mentioning libraries are Express (web application framework), Mongoose (MongoDB object modeling tool), bcrypt (a library to hash passwords), CORS (Cross-Origin Resource Sharing) and JsonWebToken for user authentication.
+Projects backend was created using Node.js and JavaScript. Node.js has npm (a node package manager), which was very useful and I used various packages from its library. Worth mentioning libraries are Express (web application framework), Mongoose (MongoDB object modeling tool), bcrypt (a library to hash passwords), CORS (Cross-Origin Resource Sharing) and JsonWebToken for user authentication.
 
 #### Frontend
 Projects frontend was created with React (a JavaScript library) and CSS (Cascading Style Sheets) for styling HTML elements. I chose to use React, because of its popularity and I also was interested learning the basics of it. I also used npm (a node package manager) mainly for applying and testing all kind of icons, styles and grids.
