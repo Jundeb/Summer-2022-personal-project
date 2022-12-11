@@ -2,7 +2,7 @@
 
 ## Project name: WebBank
 
-## Link to app: https://webbank-junnukyro.herokuapp.com/login
+## Link to app: https://webbank-bfki.onrender.com/login
 
 ### Primary idea: 
 Projects idea was to create a web bank in which users can browse their accounts balances, transactions and transfer money to other accounts. Also users can update their personal information, change password and create credit account. I took some ideas from our school project -bank-2022- for this project, but I used different tools and methods.
@@ -18,8 +18,8 @@ Projects frontend was created with React (a JavaScript library) and CSS (Cascadi
 #### Database
 I used MongoDB (an open-source NoSQL database) in this project mainly because I wanted to learn the basics and the difference between SQL and NoSQL database. Using MongoDB was very pleasant and interesting experience. I think it was very easy to use and I also like the simple structure of NoSQL.
 
-#### Heroku
-The application is running on a Heroku web server. Heroku is a container-based cloud Platform as a Service (PaaS).
+#### Render
+The application is running on a Render web server.
 
 
 
