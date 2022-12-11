@@ -21,7 +21,9 @@ connectDB();
 app.use(credentials);
 
 //Cross Origin Resource Sharing
-app.use(cors());
+app.use(cors({
+    origin: 'https://webbank-bfki.onrender.com/',
+}));
 
 //built-in middleware to hande urlencoded form data
 app.use(express.urlencoded({extended: false}));
