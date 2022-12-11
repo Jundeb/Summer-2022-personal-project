@@ -6,7 +6,7 @@ const NotFound = () => {
   //redirects to Login when on a wrong page
   useEffect(() => {
     setTimeout(() => {
-      window.location.href = "http://localhost:3000/login"
+      window.location.href = "https://webbank-bfki.onrender.com/login"
     }, 2500
     );
   }, []);
