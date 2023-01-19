@@ -4,6 +4,8 @@
 
 ## Link to app: https://webbank-bfki.onrender.com/login
 
+## Demo video(in Finnish): https://youtu.be/QAI-jMa9Fig
+
 ### Primary idea: 
 Projects idea was to create a web bank in which users can browse their accounts balances, transactions and transfer money to other accounts. Also users can update their personal information, change password and create credit account. I took some ideas from our school project -bank-2022- for this project, but I used different tools and methods.
 
@@ -30,7 +32,6 @@ The application is running on a Render web server.
 
 #### Picture of how data is structured in a database:
 ![](Images/MongoDB.png)
-
 
 
 
