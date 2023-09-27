@@ -84,7 +84,7 @@ const Transfer = ({ setUpdate, debit, credit, debitBalance, creditBalance }) => 
 
                 //when refresh token is not valid reroute to main
                 if(error.response.status === 403){
-                    window.location.href = "http://localhost:3000/main"
+                    window.location.href = "https://webbank-bfki.onrender.com/main"
                 }
 
                 else if (!error?.response) {

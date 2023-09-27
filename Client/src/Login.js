@@ -2,6 +2,7 @@ import "./css/Login.css"
 
 import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
+import { ClipLoader } from 'react-spinners';
 
 import axios from "./api/axios"
 import UserContext from "./context/userProvider"
@@ -15,11 +16,14 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleSubmit = async (e) => {
         //prevents reloading of the page
         e.preventDefault();
+
+        setLoading(true);
 
         try {
             const response = await axios.post(LOGIN_URL,
@@ -34,9 +38,12 @@ const Login = () => {
 
             setUser({ userId, username, accessToken });
 
+            setSuccess(true);
+            setLoading(false);
+
             setUsername('');
             setPassword('');
-            setSuccess(true);
+            
         } catch (error) {
             if (!error?.response) {
                 setErrorMessage('No Server Response');
@@ -97,7 +104,10 @@ const Login = () => {
                             required
                         />
                         <br />
-                        <button className="loginButton">Sign In</button>
+                        {loading 
+                        ? <button className="loginButton" disabled><ClipLoader loading color="white" size={20}/></button>
+                        : <button className="loginButton">Sign In</button>
+                        }
                     </form>
                     <div className="line">
                     </div>

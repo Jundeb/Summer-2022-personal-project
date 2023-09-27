@@ -47,7 +47,7 @@ const UpdateInfo = () => {
                 setErrorMessage('No Server Response');
             }
             else if(error.response.status === 403 || error.response.status === 401){
-                window.location.href = "http://localhost:3000/main"
+                window.location.href = "https://webbank-bfki.onrender.com/main"
             }
             else {
                 setErrorMessage('Update Failed');

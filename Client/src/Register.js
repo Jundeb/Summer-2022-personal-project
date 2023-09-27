@@ -3,6 +3,7 @@ import "./css/Register.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import axios from "./api/axios";
+import { ClipLoader } from 'react-spinners';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faInfoCircle, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -24,6 +25,8 @@ const Register = () => {
   const [matchPassword, setMatchPassword] = useState(null);
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -49,6 +52,8 @@ const Register = () => {
 
     event.preventDefault();
     
+    setLoading(true);
+
     //if button enabled with JS hack
     const valid1 = USER_REGEX.test(user);
     const valid2 = PWD_REGEX.test(password);
@@ -68,6 +73,7 @@ const Register = () => {
       );
 
       setSuccess(true);
+      setLoading(false);
 
     } catch (err) {
       if (!err?.response) {
@@ -83,7 +89,7 @@ const Register = () => {
 
   if(success){
     setTimeout(() => {
-      window.location.href = "http://localhost:3000/login";
+      window.location.href = "https://webbank-bfki.onrender.com/login";
     }, 2000);
   }
 
@@ -199,9 +205,12 @@ const Register = () => {
               </p>
             }
             <br />
-            <button className="registerButton" disabled={!validName || !validPassword || !validMatch ? true : false}>
+            {loading
+              ? <button className="registerButton" disabled><ClipLoader loading color="white" size={20}/></button>
+              : (<button className="registerButton" disabled={!validName || !validPassword || !validMatch ? true : false}>
               Sign Up
-            </button>
+            </button>)
+            }
           </form>
           <div className="line"></div>
           <div className="alreadyRegistered">
